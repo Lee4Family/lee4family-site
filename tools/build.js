@@ -172,10 +172,85 @@ function page(t, pre, selfUrl, otherHref) {
 `;
 }
 
+// ---------- 비공개 테스트 안내 (지인용, 한국어) — lee4family.com/test/ ----------
+// 카톡으로 이 주소 하나만 보낸다. 게임 하나만 가리키려면 test/#<slug>.
+// 큰 버튼 = 스토어 링크(폰에서 Play 앱이 열리고 "테스터 되기"가 보인다), 작은 링크 = 웹 참여(안 열릴 때 · PC).
+function testPage() {
+  const pre = "../";
+  const testing = games.filter((g) => g.status === "testing" && g.package);
+  const live = games.filter((g) => g.status === "live" && g.package && (!g.store || g.store.kind === "play"));
+  const icon = (g) => (exists(`assets/${g.slug}/icon.webp`) ? `<img class="icon" src="${pre}assets/${g.slug}/icon.webp" alt="" width="56" height="56">` : `<span class="icon"></span>`);
+  const row = (g, btn, small) => `
+      <li class="game" id="${g.slug}">
+        <div class="head">${icon(g)}<div><h3>${esc(g.name.ko || g.name.en)}</h3><p>${esc(g.pitch.ko || g.pitch.en)}</p></div></div>
+        ${btn}${small ? `<p class="small">${small}</p>` : ""}
+      </li>`;
+  const store = (g) => `https://play.google.com/store/apps/details?id=${g.package}`;
+  const testRows = testing.map((g) => row(g,
+    `<a class="btn primary wide" href="${store(g)}" rel="noopener">플레이 스토어에서 열기</a>`,
+    `안 열리면 → <a href="https://play.google.com/apps/testing/${g.package}" rel="noopener">웹에서 테스터 되기</a>`)).join("");
+  const liveRows = live.map((g) => row(g,
+    `<a class="btn wide outline" href="${store(g)}" rel="noopener">설치하고 별점 남기기</a>`, "")).join("");
+  const title = "Lee4Family 비공개 테스트";
+  const desc = `게임 ${testing.length}개 테스트 중 — 폰에서 열고 "테스터 되기"만 누르면 돼요.`;
+  return `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="${esc(desc)}">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:image" content="${DOMAIN}assets/brand/og.png">
+<meta property="og:url" content="${DOMAIN}test/">
+<link rel="icon" href="${pre}assets/brand/lee4family-symbol.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="${pre}assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${pre}assets/site.css">
+</head>
+<body class="tl">
+  <header class="top">
+    <a href="${pre}ko/" class="logo"><img src="${pre}assets/brand/lee4family-horizontal.svg" alt="Lee4Family" height="40"></a>
+  </header>
+  <main>
+    <h1>비공개 테스트</h1>
+    <p class="lead">우리 가족이 만든 게임을 먼저 해 보고 의견을 들려주세요. 고마워요!</p>
+    <ol class="steps">
+      <li><b>구글 계정 알려 주기</b> — 폰 플레이 스토어에 쓰는 Gmail 주소를 카톡으로. 명단에 넣어야 열려요(한 번이면 돼요).</li>
+      <li><b>플레이 스토어에서 열기</b> → <b>테스터 되기</b> → <b>설치</b></li>
+      <li><b>14일 동안 지우지 말기</b> — 구글 출시 조건이 "테스터 12명 · 14일"이에요. 가끔 켜 주면 더 좋아요.</li>
+    </ol>
+    <h2>테스트 중</h2>
+    <ul class="games">${testRows}
+    </ul>
+    ${live.length ? `<h2>출시했어요</h2>
+    <p class="sub">테스트해 주신 덕분이에요. 별점 · 리뷰 하나가 큰 힘이 돼요.</p>
+    <ul class="games">${liveRows}
+    </ul>` : ""}
+    <div class="faq">
+      <p><b>"앱을 찾을 수 없음"이 떠요</b> — 아직 명단에 안 들어간 거예요. 카톡으로 알려 주세요.</p>
+      <p><b>카톡 안에서 안 열려요</b> — 오른쪽 위 ⋮ → "다른 브라우저로 열기"(크롬).</p>
+      <p><b>불편한 점 · 버그</b> — 카톡이나 <a href="mailto:${SUPPORT}">${SUPPORT}</a> 로 아무 때나.</p>
+    </div>
+  </main>
+  <footer>
+    <p><a href="${pre}ko/">Lee4Family 게임 전체 보기</a> · <a href="${POLICY_BASE}">개인정보처리방침</a></p>
+  </footer>
+</body>
+</html>
+`;
+}
+
 (async () => {
   if (process.argv.includes("--art")) await buildArt();
+  fs.mkdirSync(path.join(SITE, "test"), { recursive: true });
+  fs.writeFileSync(path.join(SITE, "test", "index.html"), testPage());
   fs.writeFileSync(path.join(SITE, "index.html"), page(T.en, "", DOMAIN, "ko/"));
   fs.mkdirSync(path.join(SITE, "ko"), { recursive: true });
   fs.writeFileSync(path.join(SITE, "ko", "index.html"), page(T.ko, "../", `${DOMAIN}ko/`, "../"));
-  console.log(`index.html · ko/index.html — 게임 ${games.length}개`);
+  console.log(`index.html · ko/index.html · test/index.html — 게임 ${games.length}개`);
 })();

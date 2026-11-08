@@ -95,6 +95,43 @@ footer {
 footer p { margin: 4px 0; }
 footer a { color: var(--ink-soft); }
 
+/* 한국어는 단어 중간에서 줄을 바꾸지 않는다 */
+html[lang="ko"] body { word-break: keep-all; overflow-wrap: anywhere; }
+
+/* ---------- 비공개 테스트 안내 (test/) ---------- */
+.tl main { max-width: 560px; }
+.tl .top { max-width: 560px; }
+.tl h1 {
+  font-family: "Fredoka", "Noto Sans KR", sans-serif; font-weight: 600;
+  font-size: 32px; line-height: 1.2; margin: 8px 0 8px;
+}
+.tl .lead { color: var(--ink-soft); margin: 0 0 20px; }
+.tl h2 { margin-top: 32px; }
+.tl .steps {
+  margin: 0; padding: 16px 18px 16px 38px; background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.tl .steps li { margin: 6px 0; }
+.tl .steps li::marker { font-weight: 600; color: var(--orange); }
+.tl .games { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.tl .game {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px;
+  scroll-margin-top: 12px;
+}
+.tl .game:target { border: 2px solid var(--orange); box-shadow: 0 0 0 4px rgba(205, 112, 77, .15); }
+.tl .game .head { display: flex; gap: 12px; align-items: center; }
+.tl .game .icon { width: 56px; height: 56px; border-radius: 14px; flex: none; background: var(--line); }
+.tl .game h3 { margin: 0; font-size: 18px; line-height: 1.3; }
+.tl .game .head p { margin: 2px 0 0; color: var(--ink-soft); font-size: 14px; line-height: 1.45; }
+.tl .btn.wide { display: block; text-align: center; padding: 13px 18px; font-size: 16px; }
+.tl .btn.outline { border: 1.5px solid var(--ink); color: var(--ink); }
+.tl .small { margin: -4px 0 0; font-size: 13px; color: var(--ink-soft); text-align: center; }
+.tl .small a { color: var(--ink-soft); }
+.tl .faq { margin-top: 32px; font-size: 14px; color: var(--ink-soft); }
+.tl .faq p { margin: 0 0 10px; }
+.tl .faq b { color: var(--ink); }
+
 @media (max-width: 480px) {
   .grid { grid-template-columns: 1fr; }
   .hero p { font-size: 16px; }
