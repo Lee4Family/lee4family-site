@@ -3,7 +3,7 @@
   "games": [
     {
       "slug": "2048",
-      "status": "soon",
+      "status": "live",
       "platform": "Android",
       "package": "com.lee4family.Lee42048",
       "name": {
