@@ -128,6 +128,20 @@ html[lang="ko"] body { word-break: keep-all; overflow-wrap: anywhere; }
 .tl .btn.outline { border: 1.5px solid var(--ink); color: var(--ink); }
 .tl .small { margin: -4px 0 0; font-size: 13px; color: var(--ink-soft); text-align: center; }
 .tl .small a { color: var(--ink-soft); }
+/* 게임 하나 (test/<slug>/) */
+.tl .hero-game {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; margin: 8px 0 20px;
+}
+.tl .hero-game .feature { width: 100%; height: auto; aspect-ratio: 1024 / 500; object-fit: cover; background: var(--line); }
+.tl .hero-game .head { display: flex; gap: 12px; align-items: center; padding: 16px 18px 0; }
+.tl .hero-game .icon { width: 64px; height: 64px; border-radius: 16px; flex: none; }
+.tl .hero-game h1 { font-size: 26px; margin: 0; }
+.tl .hero-game .pitch { margin: 10px 18px 18px; color: var(--ink-soft); }
+.tl .cta { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.tl .focus { margin: 8px 0 0; padding-left: 22px; }
+.tl .focus li { margin: 4px 0; }
+
 .tl .faq { margin-top: 32px; font-size: 14px; color: var(--ink-soft); }
 .tl .faq p { margin: 0 0 10px; }
 .tl .faq b { color: var(--ink); }
