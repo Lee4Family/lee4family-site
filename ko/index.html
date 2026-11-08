@@ -243,18 +243,18 @@
         <article class="char">
           <div class="char-art"><img src="../assets/characters/hwani.webp" alt="화니" width="420" height="420" loading="lazy"></div>
           <div class="char-body">
-            <span class="role">메인 캐릭터</span>
+            <span class="role">우리 집 말티즈 · 메인 캐릭터</span>
             <h3>화니</h3>
-            <p>우리 집 진짜 말티즈가 Lee4Family 의 얼굴이 됐어요. 짝짝이 귀, 살짝 나온 아랫니, 장난감과 간식을 세상에서 제일 좋아해요.</p>
+            <p>Lee4Family 의 진짜 가족, 말티즈 화니예요. 아랫니가 살짝 나와 늘 혀끝을 쏙 내밀고 있고, 좀처럼 짖지 않는 순둥이예요. 태어날 때부터 뇌수두증이 있어 매일 약을 챙겨 먹지만, 올해로 <span data-born="2014">12</span>살 — 우리 곁에서 씩씩하게 잘 자라 주었어요. 앞으로도 오래오래, 건강하게 함께해요.</p>
             <p class="appears">나오는 게임: <a href="#hwani-block">화니 블록</a> · <a href="#hwani-treasure-hunt">화니의 보물찾기</a></p>
           </div>
         </article>
         <article class="char">
           <div class="char-art"><img src="../assets/characters/nyamo.webp" alt="냐모" width="420" height="420" loading="lazy"></div>
           <div class="char-body">
-            <span class="role">먹보 고양이</span>
+            <span class="role">상상 속 친구 · 먹보 고양이</span>
             <h3>냐모</h3>
-            <p>먹는 걸 세상에서 제일 좋아하는 고양이. 먹으면 행복해지고, 먹을수록 힘이 나요.</p>
+            <p>냐모는 우리 가족이 상상으로 그려 낸 고양이 친구예요. 먹는 걸 세상에서 제일 좋아해서, 맛있는 걸 먹으면 행복해지고 먹을수록 힘이 나요. 생선뼈 무늬 턱받이는 언제든 먹을 준비가 됐다는 뜻! 지금은 먹방 BJ 로 활약 중이고, 앞으로 다른 게임에서도 새로운 모습으로 만나요.</p>
             <p class="appears">나오는 게임: <a href="#mukbang-cat">먹방 냐모</a></p>
           </div>
         </article>
@@ -346,6 +346,7 @@
   </footer>
 <script>
 (() => {
+  document.querySelectorAll("[data-born]").forEach((e) => { e.textContent = new Date().getFullYear() - Number(e.dataset.born); });
   const track = document.querySelector(".slides");
   if (track) {
     const slides = [...track.children], dots = [...document.querySelectorAll(".dots button")];

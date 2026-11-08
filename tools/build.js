@@ -133,6 +133,7 @@ const T = {
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const exists = (p) => fs.existsSync(path.join(SITE, p));
+const ageFill = (html, born) => (born ? html.replace("{age}", `<span data-born="${born}">${new Date().getFullYear() - born}</span>`) : html);
 const bySlug = Object.fromEntries(games.map((g) => [g.slug, g]));
 const platformKey = (g) => (g.platform === "PC" ? "pc" : "mobile");
 const featOf = (g, lang) => {
@@ -210,7 +211,7 @@ function page(t, pre, selfUrl, otherHref) {
           <div class="char-body">
             <span class="role">${esc(c.role[lang])}</span>
             <h3>${esc(c.name[lang])}</h3>
-            <p>${esc(c.bio[lang])}</p>
+            <p>${ageFill(esc(c.bio[lang]), c.born)}</p>
             <p class="appears">${t.appearsIn}: ${c.games.filter((s) => bySlug[s]).map((s) => `<a href="#${s}">${esc(gName(s))}</a>`).join(" · ")}</p>
           </div>
         </article>`).join("");
@@ -352,6 +353,7 @@ function page(t, pre, selfUrl, otherHref) {
   </footer>
 <script>
 (() => {
+  document.querySelectorAll("[data-born]").forEach((e) => { e.textContent = new Date().getFullYear() - Number(e.dataset.born); });
   const track = document.querySelector(".slides");
   if (track) {
     const slides = [...track.children], dots = [...document.querySelectorAll(".dots button")];

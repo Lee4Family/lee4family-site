@@ -4,10 +4,11 @@
     {
       "id": "hwani",
       "name": { "en": "Hwani", "ko": "화니" },
-      "role": { "en": "Main character", "ko": "메인 캐릭터" },
+      "role": { "en": "Our Maltese · Main character", "ko": "우리 집 말티즈 · 메인 캐릭터" },
+      "born": 2014,
       "bio": {
-        "en": "Our real-life Maltese, now the face of Lee4Family. Lopsided ears, a little underbite, and a big love for toys and treats.",
-        "ko": "우리 집 진짜 말티즈가 Lee4Family 의 얼굴이 됐어요. 짝짝이 귀, 살짝 나온 아랫니, 장난감과 간식을 세상에서 제일 좋아해요."
+        "en": "Hwani is a real member of our family — a gentle Maltese who hardly ever barks. A little underbite means a pink tongue tip is always peeking out. Born with hydrocephalus, Hwani needs medicine every day, yet has grown up happily with us and turns {age} this year. Here's to many more healthy years together.",
+        "ko": "Lee4Family 의 진짜 가족, 말티즈 화니예요. 아랫니가 살짝 나와 늘 혀끝을 쏙 내밀고 있고, 좀처럼 짖지 않는 순둥이예요. 태어날 때부터 뇌수두증이 있어 매일 약을 챙겨 먹지만, 올해로 {age}살 — 우리 곁에서 씩씩하게 잘 자라 주었어요. 앞으로도 오래오래, 건강하게 함께해요."
       },
       "art": "JProject-HQ/Characters/hwani/art/pose/bounce.jpg",
       "games": ["hwani-block", "hwani-treasure-hunt"]
@@ -15,10 +16,10 @@
     {
       "id": "nyamo",
       "name": { "en": "Nyamo", "ko": "냐모" },
-      "role": { "en": "Foodie cat", "ko": "먹보 고양이" },
+      "role": { "en": "Imaginary friend · Foodie cat", "ko": "상상 속 친구 · 먹보 고양이" },
       "bio": {
-        "en": "A cat who loves eating more than anything in the world. Every bite makes Nyamo happier — and stronger.",
-        "ko": "먹는 걸 세상에서 제일 좋아하는 고양이. 먹으면 행복해지고, 먹을수록 힘이 나요."
+        "en": "Nyamo is a cat our family dreamed up. Nothing in the world beats a good meal — every bite makes Nyamo happier and stronger. The fish-bone bib means Nyamo is always ready to eat! Right now Nyamo is a mukbang streamer, with new roles to come in future games.",
+        "ko": "냐모는 우리 가족이 상상으로 그려 낸 고양이 친구예요. 먹는 걸 세상에서 제일 좋아해서, 맛있는 걸 먹으면 행복해지고 먹을수록 힘이 나요. 생선뼈 무늬 턱받이는 언제든 먹을 준비가 됐다는 뜻! 지금은 먹방 BJ 로 활약 중이고, 앞으로 다른 게임에서도 새로운 모습으로 만나요."
       },
       "art": "JProject-HQ/Characters/nyamo/art/nyamo_base.png",
       "games": ["mukbang-cat"]

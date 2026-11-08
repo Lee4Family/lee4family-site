@@ -243,18 +243,18 @@
         <article class="char">
           <div class="char-art"><img src="assets/characters/hwani.webp" alt="Hwani" width="420" height="420" loading="lazy"></div>
           <div class="char-body">
-            <span class="role">Main character</span>
+            <span class="role">Our Maltese · Main character</span>
             <h3>Hwani</h3>
-            <p>Our real-life Maltese, now the face of Lee4Family. Lopsided ears, a little underbite, and a big love for toys and treats.</p>
+            <p>Hwani is a real member of our family — a gentle Maltese who hardly ever barks. A little underbite means a pink tongue tip is always peeking out. Born with hydrocephalus, Hwani needs medicine every day, yet has grown up happily with us and turns <span data-born="2014">12</span> this year. Here's to many more healthy years together.</p>
             <p class="appears">Appears in: <a href="#hwani-block">Hwani Block</a> · <a href="#hwani-treasure-hunt">Hwani's Treasure Hunt</a></p>
           </div>
         </article>
         <article class="char">
           <div class="char-art"><img src="assets/characters/nyamo.webp" alt="Nyamo" width="420" height="420" loading="lazy"></div>
           <div class="char-body">
-            <span class="role">Foodie cat</span>
+            <span class="role">Imaginary friend · Foodie cat</span>
             <h3>Nyamo</h3>
-            <p>A cat who loves eating more than anything in the world. Every bite makes Nyamo happier — and stronger.</p>
+            <p>Nyamo is a cat our family dreamed up. Nothing in the world beats a good meal — every bite makes Nyamo happier and stronger. The fish-bone bib means Nyamo is always ready to eat! Right now Nyamo is a mukbang streamer, with new roles to come in future games.</p>
             <p class="appears">Appears in: <a href="#mukbang-cat">Mukbang Cat</a></p>
           </div>
         </article>
@@ -346,6 +346,7 @@
   </footer>
 <script>
 (() => {
+  document.querySelectorAll("[data-born]").forEach((e) => { e.textContent = new Date().getFullYear() - Number(e.dataset.born); });
   const track = document.querySelector(".slides");
   if (track) {
     const slides = [...track.children], dots = [...document.querySelectorAll(".dots button")];
