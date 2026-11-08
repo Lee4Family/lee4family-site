@@ -1,0 +1,53 @@
+{
+  "_note": "스튜디오 소개 · 캐릭터 · 소식 — 메인 페이지(index.html · ko/index.html)의 정본. 고친 뒤 `node tools/build.js`. 소식은 사실만(날짜 = HQ Projects/README.md 기록), 최근 것이 위, 메인에는 위에서 4개. 캐릭터 art 는 프로젝트 루트 기준 — `--art` 가 assets/characters/ 로 줄인다(흰 배경 그림은 페이지가 곱하기 섞기로 크림 위에 얹는다).",
+  "characters": [
+    {
+      "id": "hwani",
+      "name": { "en": "Hwani", "ko": "화니" },
+      "role": { "en": "Main character", "ko": "메인 캐릭터" },
+      "bio": {
+        "en": "Our real-life Maltese, now the face of Lee4Family. Lopsided ears, a little underbite, and a big love for toys and treats.",
+        "ko": "우리 집 진짜 말티즈가 Lee4Family 의 얼굴이 됐어요. 짝짝이 귀, 살짝 나온 아랫니, 장난감과 간식을 세상에서 제일 좋아해요."
+      },
+      "art": "JProject-HQ/Characters/hwani/art/pose/bounce.jpg",
+      "games": ["hwani-block", "hwani-treasure-hunt"]
+    },
+    {
+      "id": "nyamo",
+      "name": { "en": "Nyamo", "ko": "냐모" },
+      "role": { "en": "Foodie cat", "ko": "먹보 고양이" },
+      "bio": {
+        "en": "A cat who loves eating more than anything in the world. Every bite makes Nyamo happier — and stronger.",
+        "ko": "먹는 걸 세상에서 제일 좋아하는 고양이. 먹으면 행복해지고, 먹을수록 힘이 나요."
+      },
+      "art": "JProject-HQ/Characters/nyamo/art/nyamo_base.png",
+      "games": ["mukbang-cat"]
+    }
+  ],
+  "news": [
+    {
+      "date": "2026-11-08",
+      "game": "2048",
+      "title": { "en": "Lee4 - 2048 Puzzle is out on Google Play", "ko": "Lee4 - 2048 퍼즐, Google Play 출시" },
+      "text": { "en": "Our very first release. Thank you to every tester who played it early!", "ko": "Lee4Family 의 첫 출시작이에요. 먼저 해 주신 테스터분들 고맙습니다!" }
+    },
+    {
+      "date": "2026-11-06",
+      "game": "hwani-treasure-hunt",
+      "title": { "en": "Hwani's Treasure Hunt enters closed testing", "ko": "화니의 보물찾기 비공개 테스트 시작" },
+      "text": { "en": "A no-guessing logic puzzle starring Hwani.", "ko": "화니가 나오는, 찍기 없이 추리로 푸는 논리 퍼즐이에요." }
+    },
+    {
+      "date": "2026-11-05",
+      "game": "hwani-block",
+      "title": { "en": "Hwani Block enters closed testing", "ko": "화니 블록 비공개 테스트 시작" },
+      "text": { "en": "Hwani's first game — fit blocks and grant toy wishes.", "ko": "화니의 첫 게임 — 블록을 채워 장난감 소원을 들어줘요." }
+    },
+    {
+      "date": "2026-11-05",
+      "game": "floor-zero",
+      "title": { "en": "Floor Zero: Hunters submitted to STOVE", "ko": "플로어 제로: 헌터스 STOVE 심의 중" },
+      "text": { "en": "Our first PC game is heading to Early Access on STOVE.", "ko": "첫 PC 게임이 STOVE 앞서 해보기를 준비하고 있어요." }
+    }
+  ]
+}

@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lee4Family — Games, made by a family</title>
 <meta name="description" content="Lee4Family is a family-run game studio making games for mobile and PC.">
+<meta name="theme-color" content="#3A2E27">
 <link rel="canonical" href="https://lee4family.com/">
 <link rel="alternate" hreflang="en" href="https://lee4family.com/">
 <link rel="alternate" hreflang="ko" href="https://lee4family.com/ko/">
 <link rel="alternate" hreflang="x-default" href="https://lee4family.com/">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Lee4Family — Games, made by a family">
 <meta property="og:description" content="Lee4Family is a family-run game studio making games for mobile and PC.">
 <meta property="og:image" content="https://lee4family.com/assets/brand/og.png">
@@ -17,167 +19,354 @@
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-  <header class="top">
-    <a href="./" class="logo"><img src="assets/brand/lee4family-horizontal.svg" alt="Lee4Family" height="40"></a>
-    <a class="lang" href="ko/" hreflang="ko">한국어</a>
+<body class="home">
+  <header class="nav">
+    <div class="wrap">
+      <a href="./" class="logo"><img src="assets/brand/lee4family-horizontal.svg" alt="Lee4Family" width="150" height="36"></a>
+      <nav aria-label="main"><a href="#games">Games</a><a href="#characters">Characters</a><a href="#studio">Studio</a><a href="#news">News</a></nav>
+      <a class="lang" href="ko/" hreflang="ko" title="한국어">KO</a>
+    </div>
   </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Lee4Family Game Studio</span>
+        <h1>Games,<br>made by a family.</h1>
+        <p>We make games for mobile and PC — from quick puzzles to action roguelites. Our Maltese, Hwani, stars in some of them.</p>
+        <div class="hero-cta">
+          <a class="btn light" href="#games">See our games</a>
+          <a class="btn line" href="https://play.google.com/store/apps/details?id=com.lee4family.Lee42048&hl=en" rel="noopener">Lee4 - 2048 Puzzle ↗</a>
+        </div>
+      </div>
+      <div class="hero-stage">
+        <div class="slides" tabindex="0">
+            <a class="slide" href="#2048" aria-label="Lee4 - 2048 Puzzle">
+              <img src="assets/2048/feature-en.webp" alt="" width="1024" height="500">
+              <span class="cap"><span class="chip live">Out now</span><b>Lee4 - 2048 Puzzle</b></span>
+            </a>
+            <a class="slide" href="#floor-zero" aria-label="Floor Zero: Hunters">
+              <img src="assets/floor-zero/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+              <span class="cap"><span class="chip soon">Coming soon</span><b>Floor Zero: Hunters</b></span>
+            </a>
+            <a class="slide" href="#legion-hand" aria-label="Legion Hand">
+              <img src="assets/legion-hand/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+              <span class="cap"><span class="chip testing">Closed test</span><b>Legion Hand</b></span>
+            </a>
+            <a class="slide" href="#lumen-path" aria-label="Lumen Path">
+              <img src="assets/lumen-path/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+              <span class="cap"><span class="chip testing">Closed test</span><b>Lumen Path</b></span>
+            </a>
+            <a class="slide" href="#mukbang-cat" aria-label="Mukbang Cat">
+              <img src="assets/mukbang-cat/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+              <span class="cap"><span class="chip testing">Closed test</span><b>Mukbang Cat</b></span>
+            </a>
+            <a class="slide" href="#hwani-block" aria-label="Hwani Block">
+              <img src="assets/hwani-block/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+              <span class="cap"><span class="chip testing">Closed test</span><b>Hwani Block</b></span>
+            </a>
+            <a class="slide" href="#hwani-treasure-hunt" aria-label="Hwani's Treasure Hunt">
+              <img src="assets/hwani-treasure-hunt/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+              <span class="cap"><span class="chip testing">Closed test</span><b>Hwani's Treasure Hunt</b></span>
+            </a>
+        </div>
+        <div class="dots"><button type="button" aria-label="1" aria-current="true"></button><button type="button" aria-label="2"></button><button type="button" aria-label="3"></button><button type="button" aria-label="4"></button><button type="button" aria-label="5"></button><button type="button" aria-label="6"></button><button type="button" aria-label="7"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <a class="ticker" href="#news"><span class="wrap"><span class="new">NEW</span><time datetime="2026-11-08">Nov 8, 2026</time><span class="tk">Lee4 - 2048 Puzzle is out on Google Play</span><span class="arrow">→</span></span></a>
+
   <main>
-    <section class="hero">
-      <h1>Games,<br>made by a family.</h1>
-      <p>Lee4Family is a family-run game studio making games for mobile and PC — from quick puzzles to action roguelites. Our Maltese, Hwani, stars in some of them.</p>
-    </section>
-    <section>
-      <h2>Out now &amp; coming soon</h2>
-      
-      <div class="grid">
-      <article class="card" id="2048">
-        <img class="feature" src="assets/2048/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/2048/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Lee4 - 2048 Puzzle</h3>
-              <span class="chip live">Out now · Android</span>
-            </div>
-          </div>
-          <p>Slide the tiles, merge matching numbers and reach 2048. A clean, calm classic.</p>
-          <div class="actions"><a class="btn primary" href="https://play.google.com/store/apps/details?id=com.lee4family.Lee42048&hl=en" rel="noopener">Get it on Google Play</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/2048/">Privacy policy</a></span></div>
+    <section id="games" class="block">
+      <div class="wrap">
+        <div class="block-head">
+          <div><h2>Our games</h2><p class="sub">Quick mobile puzzles, cozy collectors and PC action — pick one and play.</p></div>
+          <div class="tabs" role="group"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="mobile" aria-pressed="false">Mobile</button><button type="button" data-f="pc" aria-pressed="false">PC</button><button type="button" data-f="testing" aria-pressed="false">In testing</button></div>
         </div>
-      </article>
-      <article class="card" id="floor-zero">
-        <img class="feature" src="assets/floor-zero/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/floor-zero/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Floor Zero: Hunters</h3>
-              <span class="chip soon">Coming soon · PC</span>
-            </div>
+        <div class="games-grid">
+        <article class="card" id="2048" data-platform="mobile" data-status="live">
+          <div class="art"><img src="assets/2048/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip live">Out now</span>
           </div>
-          <p>Awaken as a Hunter and climb a tower drowned in violet corruption — grind the hordes and build something new every run.</p>
-          <div class="actions"><span class="btn ghost" aria-disabled="true">Coming soon to STOVE</span></div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/2048/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Lee4 - 2048 Puzzle</h3>
+                <span class="platform">Android · Google Play</span>
+              </div>
+            </div>
+            <p>Slide the tiles, merge matching numbers and reach 2048. A clean, calm classic.</p>
+            <div class="actions"><a class="btn primary" href="https://play.google.com/store/apps/details?id=com.lee4family.Lee42048&hl=en" rel="noopener">Get it on Google Play</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/2048/">Privacy policy</a></span></div>
+          </div>
+        </article>
+        <article class="card" id="floor-zero" data-platform="pc" data-status="soon">
+          <div class="art"><img src="assets/floor-zero/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip soon">Coming soon</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/floor-zero/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Floor Zero: Hunters</h3>
+                <span class="platform">PC · STOVE</span>
+              </div>
+            </div>
+            <p>Awaken as a Hunter and climb a tower drowned in violet corruption — grind the hordes and build something new every run.</p>
+            <div class="actions"><span class="btn ghost" aria-disabled="true">Coming soon to STOVE</span></div>
+          </div>
+        </article>
+        <article class="card" id="legion-hand" data-platform="mobile" data-status="testing">
+          <div class="art"><img src="assets/legion-hand/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip testing">Closed test</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/legion-hand/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Legion Hand</h3>
+                <span class="platform">Android · Google Play</span>
+              </div>
+            </div>
+            <p>Attack with poker hands and multiply your damage with creature combos.</p>
+            <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Legion%20Hand&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Legion%20Hand.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/legion-hand/guide/en/">How to play</a> · <a href="https://jeddli.github.io/lee4family-policies/legion-hand/">Privacy policy</a></span></div>
+          </div>
+        </article>
+        <article class="card" id="lumen-path" data-platform="mobile" data-status="testing">
+          <div class="art"><img src="assets/lumen-path/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip testing">Closed test</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/lumen-path/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Lumen Path</h3>
+                <span class="platform">Android · Google Play</span>
+              </div>
+            </div>
+            <p>Slide tiles to guide the light from the sun to every lamp.</p>
+            <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Lumen%20Path&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Lumen%20Path.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/lumen-path/">Privacy policy</a></span></div>
+          </div>
+        </article>
+        <article class="card" id="mukbang-cat" data-platform="mobile" data-status="testing">
+          <div class="art"><img src="assets/mukbang-cat/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip testing">Closed test</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/mukbang-cat/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Mukbang Cat</h3>
+                <span class="platform">Android · Google Play</span>
+              </div>
+            </div>
+            <p>Sort the dishes, stack four of a kind, and feed the streaming cat!</p>
+            <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Mukbang%20Cat&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Mukbang%20Cat.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/mukbang-cat/">Privacy policy</a></span></div>
+          </div>
+        </article>
+        <article class="card" id="hwani-block" data-platform="mobile" data-status="testing">
+          <div class="art"><img src="assets/hwani-block/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip testing">Closed test</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/hwani-block/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Hwani Block</h3>
+                <span class="platform">Android · Google Play</span>
+              </div>
+            </div>
+            <p>Fit blocks, clear lines, and grant puppy Hwani's toy wishes. Woof!</p>
+            <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Hwani%20Block&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Hwani%20Block.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/hwani-block/">Privacy policy</a></span></div>
+          </div>
+        </article>
+        <article class="card" id="hwani-treasure-hunt" data-platform="mobile" data-status="testing">
+          <div class="art"><img src="assets/hwani-treasure-hunt/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip testing">Closed test</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/hwani-treasure-hunt/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Hwani's Treasure Hunt</h3>
+                <span class="platform">Android · Google Play</span>
+              </div>
+            </div>
+            <p>Find Hwani's hidden toys with pure logic. No guessing — every puzzle has a path.</p>
+            <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Hwani's%20Treasure%20Hunt&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Hwani's%20Treasure%20Hunt.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/hwani-treasure-hunt/">Privacy policy</a></span></div>
+          </div>
+        </article>
+        <article class="card" id="cube-figurines" data-platform="mobile" data-status="dev">
+          <div class="art"><img src="assets/cube-figurines/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="chip dev">In development</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="assets/cube-figurines/icon.webp" alt="" width="56" height="56" loading="lazy">
+              <div>
+                <h3>Cube Figurines</h3>
+                <span class="platform">Android · Google Play</span>
+              </div>
+            </div>
+            <p>Paint cute cube figurines by number and collect them on your display shelf.</p>
+            <div class="actions"><span class="links"><a href="https://jeddli.github.io/lee4family-policies/voxel-diorama/">Privacy policy</a></span></div>
+          </div>
+        </article>
+        <article class="card" id="idle-rpg" data-platform="pc" data-status="dev">
+          <div class="art"><div class="placeholder"><img src="assets/brand/lee4family-symbol.svg" alt="" width="56" height="56"><span>PC · Steam</span></div>
+            <span class="chip dev">In development</span>
+          </div>
+          <div class="body">
+            <div class="head">
+              
+              <div>
+                <h3>Idle RPG (working title)</h3>
+                <span class="platform">PC · Steam</span>
+              </div>
+            </div>
+            <p>Raise a party of hand-painted figurines on a tabletop diorama — an idle clicker RPG with deep, long-term growth.</p>
+            <div class="actions"></div>
+          </div>
+        </article>
         </div>
-      </article>
       </div>
     </section>
-    <section>
-      <h2>In testing — come play early</h2>
-      <p class="sub">These games are in closed testing on Google Play. Send us the Google account you use on your Android phone and we'll add you as a tester.</p>
-      <div class="grid">
-      <article class="card" id="legion-hand">
-        <img class="feature" src="assets/legion-hand/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/legion-hand/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Legion Hand</h3>
-              <span class="chip testing">Closed test · Android</span>
-            </div>
+
+    <section id="characters" class="block tint">
+      <div class="wrap">
+        <div class="block-head"><div><h2>Meet the characters</h2><p class="sub">Friendly faces you'll meet across our games.</p></div></div>
+        <div class="chars">
+        <article class="char">
+          <div class="char-art"><img src="assets/characters/hwani.webp" alt="Hwani" width="420" height="420" loading="lazy"></div>
+          <div class="char-body">
+            <span class="role">Main character</span>
+            <h3>Hwani</h3>
+            <p>Our real-life Maltese, now the face of Lee4Family. Lopsided ears, a little underbite, and a big love for toys and treats.</p>
+            <p class="appears">Appears in: <a href="#hwani-block">Hwani Block</a> · <a href="#hwani-treasure-hunt">Hwani's Treasure Hunt</a></p>
           </div>
-          <p>Attack with poker hands and multiply your damage with creature combos.</p>
-          <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Legion%20Hand&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Legion%20Hand.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/legion-hand/guide/en/">How to play</a> · <a href="https://jeddli.github.io/lee4family-policies/legion-hand/">Privacy policy</a></span></div>
-        </div>
-      </article>
-      <article class="card" id="lumen-path">
-        <img class="feature" src="assets/lumen-path/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/lumen-path/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Lumen Path</h3>
-              <span class="chip testing">Closed test · Android</span>
-            </div>
+        </article>
+        <article class="char">
+          <div class="char-art"><img src="assets/characters/nyamo.webp" alt="Nyamo" width="420" height="420" loading="lazy"></div>
+          <div class="char-body">
+            <span class="role">Foodie cat</span>
+            <h3>Nyamo</h3>
+            <p>A cat who loves eating more than anything in the world. Every bite makes Nyamo happier — and stronger.</p>
+            <p class="appears">Appears in: <a href="#mukbang-cat">Mukbang Cat</a></p>
           </div>
-          <p>Slide tiles to guide the light from the sun to every lamp.</p>
-          <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Lumen%20Path&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Lumen%20Path.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/lumen-path/">Privacy policy</a></span></div>
+        </article>
         </div>
-      </article>
-      <article class="card" id="mukbang-cat">
-        <img class="feature" src="assets/mukbang-cat/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/mukbang-cat/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Mukbang Cat</h3>
-              <span class="chip testing">Closed test · Android</span>
-            </div>
-          </div>
-          <p>Sort the dishes, stack four of a kind, and feed the streaming cat!</p>
-          <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Mukbang%20Cat&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Mukbang%20Cat.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/mukbang-cat/">Privacy policy</a></span></div>
-        </div>
-      </article>
-      <article class="card" id="hwani-block">
-        <img class="feature" src="assets/hwani-block/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/hwani-block/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Hwani Block</h3>
-              <span class="chip testing">Closed test · Android</span>
-            </div>
-          </div>
-          <p>Fit blocks, clear lines, and grant puppy Hwani's toy wishes. Woof!</p>
-          <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Hwani%20Block&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Hwani%20Block.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/hwani-block/">Privacy policy</a></span></div>
-        </div>
-      </article>
-      <article class="card" id="hwani-treasure-hunt">
-        <img class="feature" src="assets/hwani-treasure-hunt/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/hwani-treasure-hunt/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Hwani's Treasure Hunt</h3>
-              <span class="chip testing">Closed test · Android</span>
-            </div>
-          </div>
-          <p>Find Hwani's hidden toys with pure logic. No guessing — every puzzle has a path.</p>
-          <div class="actions"><a class="btn primary" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Hwani's%20Treasure%20Hunt&body=Hi%20Lee4Family%2C%0A%0AI'd%20like%20to%20test%20Hwani's%20Treasure%20Hunt.%0AGoogle%20account%20(Android)%3A%20%0A%0A">Become a tester</a><span class="links"><a href="https://jeddli.github.io/lee4family-policies/hwani-treasure-hunt/">Privacy policy</a></span></div>
-        </div>
-      </article>
       </div>
     </section>
-    <section>
-      <h2>In development</h2>
-      
-      <div class="grid">
-      <article class="card" id="cube-figurines">
-        <img class="feature" src="assets/cube-figurines/feature-en.webp" alt="" width="1024" height="500" loading="lazy">
-        <div class="body">
-          <div class="head">
-            <img class="icon" src="assets/cube-figurines/icon.webp" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>Cube Figurines</h3>
-              <span class="chip dev">In development · Android</span>
-            </div>
+
+    <section id="studio" class="block">
+      <div class="wrap studio-grid">
+        <div>
+          <h2>A small studio, made at home</h2>
+          <p class="lead">Lee4Family is a family-run game studio. We make small, warm games we would love to play ourselves — and every one is played by friends and testers before it ships.</p>
+          <div class="stats">
+            <div><b>1</b><span>Out now</span></div>
+            <div><b>6</b><span>In testing & review</span></div>
+            <div><b>2</b><span>In development</span></div>
           </div>
-          <p>Paint cute cube figurines by number and collect them on your display shelf.</p>
-          <div class="actions"><span class="links"><a href="https://jeddli.github.io/lee4family-policies/voxel-diorama/">Privacy policy</a></span></div>
         </div>
-      </article>
-      <article class="card" id="idle-rpg">
-        <div class="feature placeholder"><span>PC · Steam</span></div>
-        <div class="body">
-          <div class="head">
-            
-            <div>
-              <h3>Idle RPG (working title)</h3>
-              <span class="chip dev">In development · PC</span>
-            </div>
+        <ul class="pillars">
+          <li><span class="num">01</span><div><h3>Quick to pick up</h3><p>Short sessions with real depth — for the bus ride or a whole evening.</p></div></li>
+          <li><span class="num">02</span><div><h3>Made by a family</h3><p>Our dog Hwani is the main character. Really.</p></div></li>
+          <li><span class="num">03</span><div><h3>Played before it ships</h3><p>Every game goes through closed testing with real players first.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="news" class="block tint">
+      <div class="wrap">
+        <div class="block-head"><div><h2>News</h2></div></div>
+        <ul class="news">
+        <li>
+          <time datetime="2026-11-08">Nov 8, 2026</time>
+          <div>
+            <h3><a href="#2048">Lee4 - 2048 Puzzle is out on Google Play</a></h3>
+            <p>Our very first release. Thank you to every tester who played it early!</p>
           </div>
-          <p>Raise a party of hand-painted figurines on a tabletop diorama — an idle clicker RPG with deep, long-term growth.</p>
-          <div class="actions"></div>
-        </div>
-      </article>
+        </li>
+        <li>
+          <time datetime="2026-11-06">Nov 6, 2026</time>
+          <div>
+            <h3><a href="#hwani-treasure-hunt">Hwani's Treasure Hunt enters closed testing</a></h3>
+            <p>A no-guessing logic puzzle starring Hwani.</p>
+          </div>
+        </li>
+        <li>
+          <time datetime="2026-11-05">Nov 5, 2026</time>
+          <div>
+            <h3><a href="#hwani-block">Hwani Block enters closed testing</a></h3>
+            <p>Hwani's first game — fit blocks and grant toy wishes.</p>
+          </div>
+        </li>
+        <li>
+          <time datetime="2026-11-05">Nov 5, 2026</time>
+          <div>
+            <h3><a href="#floor-zero">Floor Zero: Hunters submitted to STOVE</a></h3>
+            <p>Our first PC game is heading to Early Access on STOVE.</p>
+          </div>
+        </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap band-inner">
+        <div><h2>Want to play before everyone else?</h2><p>Join a closed test on Google Play — send us the Google account you use on your Android phone.</p></div>
+        <a class="btn light" href="mailto:leefourfamily.support@gmail.com?subject=%5BTester%5D%20Lee4Family">Email us to join</a>
       </div>
     </section>
   </main>
-  <footer>
-    <p>Contact: <a href="mailto:leefourfamily.support@gmail.com">leefourfamily.support@gmail.com</a> · <a href="https://jeddli.github.io/lee4family-policies/">All privacy policies</a></p>
-    <p>© 2026 Lee4Family</p>
+
+  <footer class="site-footer">
+    <div class="wrap foot-grid">
+      <div>
+        <img src="assets/brand/lee4family-horizontal-dark.svg" alt="Lee4Family" width="150" height="36">
+        <p>Lee4Family is a family-run game studio making games for mobile and PC.</p>
+      </div>
+      <div>
+        <h4>Games</h4>
+        <a href="#2048">Lee4 - 2048 Puzzle</a><a href="#floor-zero">Floor Zero: Hunters</a><a href="#legion-hand">Legion Hand</a><a href="#lumen-path">Lumen Path</a><a href="#mukbang-cat">Mukbang Cat</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:leefourfamily.support@gmail.com">leefourfamily.support@gmail.com</a>
+        <a href="https://jeddli.github.io/lee4family-policies/">Privacy policies</a>
+        <a href="ko/" hreflang="ko">한국어</a>
+      </div>
+    </div>
+    <div class="wrap"><p class="copy">© 2026 Lee4Family</p></div>
   </footer>
+<script>
+(() => {
+  const track = document.querySelector(".slides");
+  if (track) {
+    const slides = [...track.children], dots = [...document.querySelectorAll(".dots button")];
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let i = 0, timer = 0, settle = 0;
+    const go = (n) => { i = (n + slides.length) % slides.length; track.scrollTo({ left: slides[i].offsetLeft, behavior: reduce ? "auto" : "smooth" }); };
+    const mark = () => { i = Math.round(track.scrollLeft / track.clientWidth); dots.forEach((d, k) => d.setAttribute("aria-current", String(k === i))); };
+    const restart = () => { clearInterval(timer); if (!reduce && slides.length > 1) timer = setInterval(() => go(i + 1), 5000); };
+    track.addEventListener("scroll", () => { clearTimeout(settle); settle = setTimeout(mark, 80); });
+    dots.forEach((d, k) => d.addEventListener("click", () => { go(k); restart(); }));
+    ["pointerenter", "focusin", "touchstart"].forEach((e) => track.addEventListener(e, () => clearInterval(timer), { passive: true }));
+    ["pointerleave", "focusout"].forEach((e) => track.addEventListener(e, restart));
+    restart();
+  }
+  const tabs = document.querySelectorAll(".tabs button");
+  tabs.forEach((b) => b.addEventListener("click", () => {
+    tabs.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    const f = b.dataset.f;
+    document.querySelectorAll(".games-grid .card").forEach((c) => { c.hidden = !(f === "all" || c.dataset.platform === f || c.dataset.status === f); });
+  }));
+})();
+</script>
 </body>
 </html>

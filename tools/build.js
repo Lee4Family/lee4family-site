@@ -1,4 +1,4 @@
-// Lee4Family 게임 소개 사이트 만들기 — data/games.json → index.html(영어) · ko/index.html(한국어) · assets/
+// Lee4Family 게임 소개 사이트 만들기 — data/games.json · data/studio.json → index.html(영어) · ko/index.html(한국어) · test/ · assets/
 // 쓰는 법(이 저장소 루트에서): node tools/build.js
 //   그림 다시 뽑기: SHARP_DIR=<sharp 를 설치한 폴더> node tools/build.js --art
 //   (--art 가 없으면 assets/ 에 이미 있는 그림을 그대로 쓴다)
@@ -44,109 +44,199 @@ async function buildArt() {
       console.log(`${g.slug}/${name}.webp  ${(fs.statSync(dst).size / 1024).toFixed(0)} KB`);
     }
   }
+  // 캐릭터 그림 (data/studio.json) — 흰 배경 그대로, 페이지가 곱하기 섞기로 얹는다
+  const studioData = JSON.parse(fs.readFileSync(path.join(SITE, "data", "studio.json"), "utf8"));
+  fs.mkdirSync(path.join(SITE, "assets", "characters"), { recursive: true });
+  for (const c of studioData.characters) {
+    const src = path.join(ROOT, c.art);
+    if (!fs.existsSync(src)) { console.warn(`없음: ${c.art}`); continue; }
+    const dst = path.join(SITE, "assets", "characters", `${c.id}.webp`);
+    await sharp(src).resize({ width: 420, withoutEnlargement: true }).webp({ quality: 84 }).toFile(dst);
+    console.log(`characters/${c.id}.webp  ${(fs.statSync(dst).size / 1024).toFixed(0)} KB`);
+  }
   const logo = path.join(ROOT, "JProject-HQ", "Brand", "logo");
   fs.mkdirSync(path.join(SITE, "assets", "brand"), { recursive: true });
-  for (const f of ["lee4family-horizontal.svg", "lee4family-symbol.svg"]) {
+  for (const f of ["lee4family-horizontal.svg", "lee4family-horizontal-dark.svg", "lee4family-symbol.svg"]) {
     fs.copyFileSync(path.join(logo, f), path.join(SITE, "assets", "brand", f));
   }
   await sharp(path.join(logo, "lee4family-symbol-cream_512.png")).resize(180).png().toFile(path.join(SITE, "assets", "brand", "apple-touch-icon.png"));
   await sharp(path.join(logo, "lee4family-symbol-cream_512.png")).resize(1200, 630, { fit: "contain", background: "#F2E9D6" }).png().toFile(path.join(SITE, "assets", "brand", "og.png"));
 }
 
-// ---------- 글 ----------
+// ---------- 메인 페이지 (index.html 영어 · ko/index.html 한국어) ----------
+// 구성: 위 메뉴 · 히어로(대표 그림 넘김) · 새 소식 띠 · 게임(탭) · 캐릭터 · 스튜디오(숫자) · 소식 · 테스터 띠 · 아래 바닥
+// 정본: data/games.json(게임) · data/studio.json(캐릭터 · 소식)
+const studio = JSON.parse(fs.readFileSync(path.join(SITE, "data", "studio.json"), "utf8"));
+
 const T = {
   en: {
     lang: "en", title: "Lee4Family — Games, made by a family",
     desc: "Lee4Family is a family-run game studio making games for mobile and PC.",
+    nav: { games: "Games", characters: "Characters", studio: "Studio", news: "News" },
+    eyebrow: "Lee4Family Game Studio",
     hero: "Games,<br>made by a family.",
-    heroSub: "Lee4Family is a family-run game studio making games for mobile and PC — from quick puzzles to action roguelites. Our Maltese, Hwani, stars in some of them.",
-    play: "Out now &amp; coming soon", testing: "In testing — come play early", dev: "In development",
-    testingSub: "These games are in closed testing on Google Play. Send us the Google account you use on your Android phone and we'll add you as a tester.",
+    heroSub: "We make games for mobile and PC — from quick puzzles to action roguelites. Our Maltese, Hwani, stars in some of them.",
+    seeGames: "See our games", newTag: "NEW",
+    games: "Our games", gamesSub: "Quick mobile puzzles, cozy collectors and PC action — pick one and play.",
+    tabs: { all: "All", mobile: "Mobile", pc: "PC", testing: "In testing" },
     status: { live: "Out now", soon: "Coming soon", testing: "Closed test", dev: "In development" },
     getIt: (s) => (s === "play" ? "Get it on Google Play" : `View on ${STORES[s]}`), soonBtn: (s) => `Coming soon to ${STORES[s]}`,
     joinTest: "Become a tester", privacy: "Privacy policy", guide: "How to play",
     testerSubject: (n) => `[Tester] ${n}`,
     testerBody: (n) => `Hi Lee4Family,\n\nI'd like to test ${n}.\nGoogle account (Android): \n\n`,
-    contact: "Contact", policies: "All privacy policies", other: "한국어",
+    characters: "Meet the characters", charactersSub: "Friendly faces you'll meet across our games.", appearsIn: "Appears in",
+    studio: "A small studio, made at home",
+    studioText: "Lee4Family is a family-run game studio. We make small, warm games we would love to play ourselves — and every one is played by friends and testers before it ships.",
+    stats: { live: "Out now", testing: "In testing & review", dev: "In development" },
+    pillars: [
+      ["Quick to pick up", "Short sessions with real depth — for the bus ride or a whole evening."],
+      ["Made by a family", "Our dog Hwani is the main character. Really."],
+      ["Played before it ships", "Every game goes through closed testing with real players first."],
+    ],
+    news: "News",
+    band: "Want to play before everyone else?",
+    bandSub: "Join a closed test on Google Play — send us the Google account you use on your Android phone.",
+    bandBtn: "Email us to join", bandHref: () => `mailto:${SUPPORT}?subject=${encodeURIComponent("[Tester] Lee4Family")}`,
+    contact: "Contact", policies: "Privacy policies", other: "한국어", otherShort: "KO",
+    dateFmt: (d) => new Date(`${d}T00:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }),
   },
   ko: {
     lang: "ko", title: "Lee4Family — 가족이 함께 만드는 게임",
     desc: "Lee4Family 는 가족이 함께 꾸리는 게임 스튜디오예요. 모바일과 PC 게임을 만듭니다.",
+    nav: { games: "게임", characters: "캐릭터", studio: "스튜디오", news: "소식" },
+    eyebrow: "Lee4Family 게임 스튜디오",
     hero: "가족이 함께<br>만드는 게임.",
-    heroSub: "Lee4Family 는 가족이 함께 꾸리는 게임 스튜디오예요. 가볍게 즐기는 모바일 퍼즐부터 PC 액션 로그라이트까지 만들고, 우리 집 말티즈 화니도 게임에 나와요.",
-    play: "출시 · 곧 출시", testing: "테스트 중 — 먼저 해 보세요", dev: "만드는 중",
-    testingSub: "아래 게임은 Google Play 비공개 테스트 중이에요. 안드로이드 폰에서 쓰는 Google 계정을 보내 주시면 테스터로 넣어 드려요.",
+    heroSub: "가볍게 즐기는 모바일 퍼즐부터 PC 액션 로그라이트까지 만들어요. 우리 집 말티즈 화니도 게임에 나와요.",
+    seeGames: "게임 보기", newTag: "NEW",
+    games: "우리 게임", gamesSub: "짧게 즐기는 퍼즐, 모으는 재미, PC 액션까지 — 골라서 해 보세요.",
+    tabs: { all: "전체", mobile: "모바일", pc: "PC", testing: "테스트 중" },
     status: { live: "출시", soon: "곧 출시", testing: "비공개 테스트", dev: "개발 중" },
     getIt: (s) => (s === "play" ? "Google Play 에서 받기" : `${STORES[s]} 에서 보기`), soonBtn: (s) => `${STORES[s]} 곧 출시`,
-    joinTest: "테스터 신청", privacy: "개인정보처리방침", guide: "플레이 안내",
-    testerSubject: (n) => `[테스터 신청] ${n}`,
-    testerBody: (n) => `안녕하세요 Lee4Family,\n\n${n} 테스트에 참여하고 싶어요.\n안드로이드 폰의 Google 계정: \n\n`,
-    contact: "문의", policies: "개인정보처리방침 모음", other: "English",
+    joinTest: "테스트 참여", privacy: "개인정보처리방침", guide: "플레이 안내",
+    characters: "캐릭터 소개", charactersSub: "우리 게임 곳곳에서 만나는 친구들이에요.", appearsIn: "나오는 게임",
+    studio: "집에서 만드는 작은 스튜디오",
+    studioText: "Lee4Family 는 가족이 함께 꾸리는 게임 스튜디오예요. 우리가 하고 싶은 작고 따뜻한 게임을 만들고, 모든 게임은 출시 전에 지인과 테스터가 먼저 해 봐요.",
+    stats: { live: "출시", testing: "테스트 · 심의 중", dev: "만드는 중" },
+    pillars: [
+      ["쉽게 시작", "짧게 해도 재밌고, 오래 하면 깊어지는 게임."],
+      ["가족이 만든", "우리 집 강아지 화니가 메인 캐릭터예요. 진짜로요."],
+      ["먼저 해 보고 출시", "모든 게임은 비공개 테스트에서 실제 플레이어가 먼저 해 봐요."],
+    ],
+    news: "소식",
+    band: "누구보다 먼저 해 보고 싶다면",
+    bandSub: "Google Play 비공개 테스트에 참여해 주세요. 게임을 고르고 안내대로 하면 돼요.",
+    bandBtn: "테스트 게임 보기", bandHref: (pre) => `${pre}test/`,
+    contact: "문의", policies: "개인정보처리방침", other: "English", otherShort: "EN",
+    dateFmt: (d) => d.replace(/-/g, ". ").replace(/^(\d+)\. (\d+)\. (\d+)$/, (m, y, mo, da) => `${y}. ${Number(mo)}. ${Number(da)}.`),
   },
 };
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const exists = (p) => fs.existsSync(path.join(SITE, p));
+const bySlug = Object.fromEntries(games.map((g) => [g.slug, g]));
+const platformKey = (g) => (g.platform === "PC" ? "pc" : "mobile");
+const featOf = (g, lang) => {
+  for (const l of [lang, "en", "ko"]) if (exists(`assets/${g.slug}/feature-${l}.webp`)) return `assets/${g.slug}/feature-${l}.webp`;
+  return "";
+};
+
+function storeHref(g, lang) {
+  const kind = (g.store && g.store.kind) || "play";
+  return (g.store && g.store.url) || (kind === "play" ? `https://play.google.com/store/apps/details?id=${g.package}&hl=${lang}` : "");
+}
+
+function action(g, t, pre) {
+  const kind = (g.store && g.store.kind) || "play";
+  const name = g.name[t.lang] || g.name.en;
+  if (g.status === "live" && storeHref(g, t.lang)) return `<a class="btn primary" href="${storeHref(g, t.lang)}" rel="noopener">${t.getIt(kind)}</a>`;
+  if (g.status === "soon") return `<span class="btn ghost" aria-disabled="true">${t.soonBtn(kind)}</span>`;
+  if (g.status === "testing" && kind === "play") {
+    if (t.lang === "ko") return `<a class="btn primary" href="${pre}test/${g.slug}/">${t.joinTest}</a>`;
+    const href = `mailto:${SUPPORT}?subject=${encodeURIComponent(t.testerSubject(g.name.en))}&body=${encodeURIComponent(t.testerBody(name))}`;
+    return `<a class="btn primary" href="${href}">${t.joinTest}</a>`;
+  }
+  return "";
+}
 
 function card(g, t, pre) {
   const lang = t.lang;
   const name = g.name[lang] || g.name.en;
-  const featLang = g.art.feature && g.art.feature[lang] ? lang : "en";
-  const feat = `assets/${g.slug}/feature-${featLang}.webp`;
+  const feat = featOf(g, lang);
   const icon = `assets/${g.slug}/icon.webp`;
   const kind = (g.store && g.store.kind) || "play";
-  const storeUrl = (g.store && g.store.url) || (kind === "play" ? `https://play.google.com/store/apps/details?id=${g.package}&hl=${lang}` : "");
-  let action = "";
-  if (g.status === "live" && storeUrl) action = `<a class="btn primary" href="${storeUrl}" rel="noopener">${t.getIt(kind)}</a>`;
-  else if (g.status === "soon") action = `<span class="btn ghost" aria-disabled="true">${t.soonBtn(kind)}</span>`;
-  else if (g.status === "testing" && kind === "play") {
-    const href = `mailto:${SUPPORT}?subject=${encodeURIComponent(t.testerSubject(g.name.en))}&body=${encodeURIComponent(t.testerBody(name))}`;
-    action = `<a class="btn primary" href="${href}">${t.joinTest}</a>`;
-  }
   const links = [];
   if (g.links.guide) links.push(`<a href="${POLICY_BASE}${g.links.guide[lang] || g.links.guide.en}">${t.guide}</a>`);
   if (g.links.privacy) links.push(`<a href="${POLICY_BASE}${g.links.privacy}">${t.privacy}</a>`);
   return `
-      <article class="card" id="${g.slug}">
-        ${exists(feat) ? `<img class="feature" src="${pre}${feat}" alt="" width="1024" height="500" loading="lazy">` : `<div class="feature placeholder"><span>${esc(g.platform)} · ${STORES[kind]}</span></div>`}
-        <div class="body">
-          <div class="head">
-            ${exists(icon) ? `<img class="icon" src="${pre}${icon}" alt="" width="64" height="64" loading="lazy">` : ""}
-            <div>
-              <h3>${esc(name)}</h3>
-              <span class="chip ${g.status}">${t.status[g.status]} · ${esc(g.platform)}</span>
-            </div>
+        <article class="card" id="${g.slug}" data-platform="${platformKey(g)}" data-status="${g.status}">
+          <div class="art">${feat ? `<img src="${pre}${feat}" alt="" width="1024" height="500" loading="lazy">` : `<div class="placeholder"><img src="${pre}assets/brand/lee4family-symbol.svg" alt="" width="56" height="56"><span>${esc(g.platform)} · ${STORES[kind]}</span></div>`}
+            <span class="chip ${g.status}">${t.status[g.status]}</span>
           </div>
-          <p>${esc(g.pitch[lang] || g.pitch.en)}</p>
-          <div class="actions">${action}${links.length ? `<span class="links">${links.join(" · ")}</span>` : ""}</div>
-        </div>
-      </article>`;
-}
-
-function section(title, sub, list, t, pre) {
-  if (!list.length) return "";
-  return `
-    <section>
-      <h2>${title}</h2>
-      ${sub ? `<p class="sub">${sub}</p>` : ""}
-      <div class="grid">${list.map((g) => card(g, t, pre)).join("")}
-      </div>
-    </section>`;
+          <div class="body">
+            <div class="head">
+              ${exists(icon) ? `<img class="icon" src="${pre}${icon}" alt="" width="56" height="56" loading="lazy">` : ""}
+              <div>
+                <h3>${esc(name)}</h3>
+                <span class="platform">${esc(g.platform)} · ${STORES[kind]}</span>
+              </div>
+            </div>
+            <p>${esc(g.pitch[lang] || g.pitch.en)}</p>
+            <div class="actions">${action(g, t, pre)}${links.length ? `<span class="links">${links.join(" · ")}</span>` : ""}</div>
+          </div>
+        </article>`;
 }
 
 function page(t, pre, selfUrl, otherHref) {
-  const by = (s) => games.filter((g) => s.includes(g.status));
+  const lang = t.lang;
+  const order = { live: 0, soon: 1, testing: 2, dev: 3 };
+  const sorted = [...games].sort((a, b) => order[a.status] - order[b.status]);
+  const slides = sorted.filter((g) => g.status !== "dev" && featOf(g, lang));
+  const count = (s) => games.filter((g) => s.includes(g.status)).length;
+  const news = studio.news.slice(0, 4);
+  const latest = news[0];
+  const gName = (slug) => (bySlug[slug] ? bySlug[slug].name[lang] || bySlug[slug].name.en : slug);
+  const nav = Object.entries(t.nav).map(([k, v]) => `<a href="#${k}">${v}</a>`).join("");
+
+  const heroSlides = slides.map((g, i) => `
+            <a class="slide" href="#${g.slug}" aria-label="${esc(g.name[lang] || g.name.en)}">
+              <img src="${pre}${featOf(g, lang)}" alt="" width="1024" height="500"${i ? ` loading="lazy"` : ""}>
+              <span class="cap"><span class="chip ${g.status}">${t.status[g.status]}</span><b>${esc(g.name[lang] || g.name.en)}</b></span>
+            </a>`).join("");
+  const dots = slides.map((g, i) => `<button type="button" aria-label="${i + 1}"${i ? "" : ` aria-current="true"`}></button>`).join("");
+
+  const chars = studio.characters.map((c) => `
+        <article class="char">
+          <div class="char-art">${exists(`assets/characters/${c.id}.webp`) ? `<img src="${pre}assets/characters/${c.id}.webp" alt="${esc(c.name[lang])}" width="420" height="420" loading="lazy">` : ""}</div>
+          <div class="char-body">
+            <span class="role">${esc(c.role[lang])}</span>
+            <h3>${esc(c.name[lang])}</h3>
+            <p>${esc(c.bio[lang])}</p>
+            <p class="appears">${t.appearsIn}: ${c.games.filter((s) => bySlug[s]).map((s) => `<a href="#${s}">${esc(gName(s))}</a>`).join(" · ")}</p>
+          </div>
+        </article>`).join("");
+
+  const newsItems = news.map((n) => `
+        <li>
+          <time datetime="${n.date}">${t.dateFmt(n.date)}</time>
+          <div>
+            <h3>${bySlug[n.game] ? `<a href="#${n.game}">${esc(n.title[lang])}</a>` : esc(n.title[lang])}</h3>
+            <p>${esc(n.text[lang])}</p>
+          </div>
+        </li>`).join("");
+
   return `<!doctype html>
-<html lang="${t.lang}">
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${t.title}</title>
 <meta name="description" content="${esc(t.desc)}">
+<meta name="theme-color" content="#3A2E27">
 <link rel="canonical" href="${selfUrl}">
 <link rel="alternate" hreflang="en" href="${DOMAIN}">
 <link rel="alternate" hreflang="ko" href="${DOMAIN}ko/">
 <link rel="alternate" hreflang="x-default" href="${DOMAIN}">
+<meta property="og:type" content="website">
 <meta property="og:title" content="${esc(t.title)}">
 <meta property="og:description" content="${esc(t.desc)}">
 <meta property="og:image" content="${DOMAIN}assets/brand/og.png">
@@ -155,24 +245,135 @@ function page(t, pre, selfUrl, otherHref) {
 <link rel="apple-touch-icon" href="${pre}assets/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pre}assets/site.css">
 </head>
-<body>
-  <header class="top">
-    <a href="${pre || "./"}" class="logo"><img src="${pre}assets/brand/lee4family-horizontal.svg" alt="Lee4Family" height="40"></a>
-    <a class="lang" href="${otherHref}" hreflang="${t.lang === "en" ? "ko" : "en"}">${t.other}</a>
+<body class="home">
+  <header class="nav">
+    <div class="wrap">
+      <a href="${pre || "./"}" class="logo"><img src="${pre}assets/brand/lee4family-horizontal.svg" alt="Lee4Family" width="150" height="36"></a>
+      <nav aria-label="main">${nav}</nav>
+      <a class="lang" href="${otherHref}" hreflang="${lang === "en" ? "ko" : "en"}" title="${t.other}">${t.otherShort}</a>
+    </div>
   </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">${t.eyebrow}</span>
+        <h1>${t.hero}</h1>
+        <p>${t.heroSub}</p>
+        <div class="hero-cta">
+          <a class="btn light" href="#games">${t.seeGames}</a>
+          ${slides[0] && slides[0].status === "live" ? `<a class="btn line" href="${storeHref(slides[0], lang)}" rel="noopener">${esc(slides[0].name[lang] || slides[0].name.en)} ↗</a>` : ""}
+        </div>
+      </div>
+      <div class="hero-stage">
+        <div class="slides" tabindex="0">${heroSlides}
+        </div>
+        <div class="dots">${dots}</div>
+      </div>
+    </div>
+  </section>
+
+  ${latest ? `<a class="ticker" href="#news"><span class="wrap"><span class="new">${t.newTag}</span><time datetime="${latest.date}">${t.dateFmt(latest.date)}</time><span class="tk">${esc(latest.title[lang])}</span><span class="arrow">→</span></span></a>` : ""}
+
   <main>
-    <section class="hero">
-      <h1>${t.hero}</h1>
-      <p>${t.heroSub}</p>
-    </section>${section(t.play, "", by(["live", "soon"]), t, pre)}${section(t.testing, t.testingSub, by(["testing"]), t, pre)}${section(t.dev, "", by(["dev"]), t, pre)}
+    <section id="games" class="block">
+      <div class="wrap">
+        <div class="block-head">
+          <div><h2>${t.games}</h2><p class="sub">${t.gamesSub}</p></div>
+          <div class="tabs" role="group">${Object.entries(t.tabs).map(([k, v], i) => `<button type="button" data-f="${k}" aria-pressed="${i === 0}">${v}</button>`).join("")}</div>
+        </div>
+        <div class="games-grid">${sorted.map((g) => card(g, t, pre)).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section id="characters" class="block tint">
+      <div class="wrap">
+        <div class="block-head"><div><h2>${t.characters}</h2><p class="sub">${t.charactersSub}</p></div></div>
+        <div class="chars">${chars}
+        </div>
+      </div>
+    </section>
+
+    <section id="studio" class="block">
+      <div class="wrap studio-grid">
+        <div>
+          <h2>${t.studio}</h2>
+          <p class="lead">${t.studioText}</p>
+          <div class="stats">
+            <div><b>${count(["live"])}</b><span>${t.stats.live}</span></div>
+            <div><b>${count(["testing", "soon"])}</b><span>${t.stats.testing}</span></div>
+            <div><b>${count(["dev"])}</b><span>${t.stats.dev}</span></div>
+          </div>
+        </div>
+        <ul class="pillars">${t.pillars.map(([h, p], i) => `
+          <li><span class="num">0${i + 1}</span><div><h3>${h}</h3><p>${p}</p></div></li>`).join("")}
+        </ul>
+      </div>
+    </section>
+
+    <section id="news" class="block tint">
+      <div class="wrap">
+        <div class="block-head"><div><h2>${t.news}</h2></div></div>
+        <ul class="news">${newsItems}
+        </ul>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap band-inner">
+        <div><h2>${t.band}</h2><p>${t.bandSub}</p></div>
+        <a class="btn light" href="${t.bandHref(pre)}">${t.bandBtn}</a>
+      </div>
+    </section>
   </main>
-  <footer>
-    <p>${t.contact}: <a href="mailto:${SUPPORT}">${SUPPORT}</a> · <a href="${POLICY_BASE}">${t.policies}</a></p>
-    <p>© ${new Date().getFullYear()} Lee4Family</p>
+
+  <footer class="site-footer">
+    <div class="wrap foot-grid">
+      <div>
+        <img src="${pre}assets/brand/lee4family-horizontal-dark.svg" alt="Lee4Family" width="150" height="36">
+        <p>${t.desc}</p>
+      </div>
+      <div>
+        <h4>${t.nav.games}</h4>
+        ${sorted.filter((g) => g.status !== "dev").slice(0, 5).map((g) => `<a href="#${g.slug}">${esc(g.name[lang] || g.name.en)}</a>`).join("")}
+      </div>
+      <div>
+        <h4>${t.contact}</h4>
+        <a href="mailto:${SUPPORT}">${SUPPORT}</a>
+        <a href="${POLICY_BASE}">${t.policies}</a>
+        <a href="${otherHref}" hreflang="${lang === "en" ? "ko" : "en"}">${t.other}</a>
+      </div>
+    </div>
+    <div class="wrap"><p class="copy">© ${new Date().getFullYear()} Lee4Family</p></div>
   </footer>
+<script>
+(() => {
+  const track = document.querySelector(".slides");
+  if (track) {
+    const slides = [...track.children], dots = [...document.querySelectorAll(".dots button")];
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let i = 0, timer = 0, settle = 0;
+    const go = (n) => { i = (n + slides.length) % slides.length; track.scrollTo({ left: slides[i].offsetLeft, behavior: reduce ? "auto" : "smooth" }); };
+    const mark = () => { i = Math.round(track.scrollLeft / track.clientWidth); dots.forEach((d, k) => d.setAttribute("aria-current", String(k === i))); };
+    const restart = () => { clearInterval(timer); if (!reduce && slides.length > 1) timer = setInterval(() => go(i + 1), 5000); };
+    track.addEventListener("scroll", () => { clearTimeout(settle); settle = setTimeout(mark, 80); });
+    dots.forEach((d, k) => d.addEventListener("click", () => { go(k); restart(); }));
+    ["pointerenter", "focusin", "touchstart"].forEach((e) => track.addEventListener(e, () => clearInterval(timer), { passive: true }));
+    ["pointerleave", "focusout"].forEach((e) => track.addEventListener(e, restart));
+    restart();
+  }
+  const tabs = document.querySelectorAll(".tabs button");
+  tabs.forEach((b) => b.addEventListener("click", () => {
+    tabs.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    const f = b.dataset.f;
+    document.querySelectorAll(".games-grid .card").forEach((c) => { c.hidden = !(f === "all" || c.dataset.platform === f || c.dataset.status === f); });
+  }));
+})();
+</script>
 </body>
 </html>
 `;
