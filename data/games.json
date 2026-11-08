@@ -1,117 +1,238 @@
 {
-  "_note": "Lee4Family 게임 목록 — 이 파일이 사이트의 정본. 고친 뒤 `node tools/build.js`. status: live(스토어 링크) · soon(심의 중) · testing(비공개 테스트 — 테스터 모집 메일) · dev(개발 중). art 경로는 프로젝트 루트(이 저장소의 부모 폴더) 기준 — build.js 가 assets/ 로 줄여 복사한다.",
+  "_note": "Lee4Family 게임 목록 — 이 파일이 사이트의 정본. 고친 뒤 `node tools/build.js`. store.kind: play · stove · steam (live 면 store.url 링크). status: live(스토어 링크) · soon(심의 중) · testing(비공개 테스트 — 테스터 모집 메일) · dev(개발 중). art 경로는 프로젝트 루트(이 저장소의 부모 폴더) 기준 — build.js 가 assets/ 로 줄여 복사한다.",
   "games": [
     {
       "slug": "2048",
       "status": "soon",
       "platform": "Android",
       "package": "com.lee4family.Lee42048",
-      "name": { "en": "Lee4 - 2048 Puzzle", "ko": "Lee4 - 2048 퍼즐" },
+      "name": {
+        "en": "Lee4 - 2048 Puzzle",
+        "ko": "Lee4 - 2048 퍼즐"
+      },
       "pitch": {
         "en": "Slide the tiles, merge matching numbers and reach 2048. A clean, calm classic.",
         "ko": "타일을 밀어 같은 숫자를 합치고 2048을 만드는 깔끔한 숫자 퍼즐."
       },
       "art": {
         "icon": "JProject02/RawAsset/StoreImage/PlayStore_Upload/1_AppIcon_512x512.png",
-        "feature": { "en": "JProject02/RawAsset/StoreImage/PlayStore_Upload/2_FeatureGraphic_1024x500.png" }
+        "feature": {
+          "en": "JProject02/RawAsset/StoreImage/PlayStore_Upload/2_FeatureGraphic_1024x500.png"
+        }
       },
-      "links": { "privacy": "2048/" }
+      "links": {
+        "privacy": "2048/"
+      },
+      "store": {
+        "kind": "play"
+      }
+    },
+    {
+      "slug": "floor-zero",
+      "status": "soon",
+      "platform": "PC",
+      "store": {
+        "kind": "stove"
+      },
+      "name": {
+        "en": "Floor Zero: Hunters",
+        "ko": "플로어 제로: 헌터스"
+      },
+      "pitch": {
+        "en": "Awaken as a Hunter and climb a tower drowned in violet corruption — grind the hordes and build something new every run.",
+        "ko": "각성한 헌터가 되어 보랏빛 침식에 잠긴 탑을 오르세요. 몰려오는 무리를 쓸어버리고 매 판 다른 빌드를 만드는 액션 로그라이트."
+      },
+      "art": {
+        "icon": "JProject03/Docs/Release/Store/stove_square.png",
+        "feature": {
+          "en": "JProject03/Docs/Release/Store/header.png"
+        }
+      },
+      "links": {}
     },
     {
       "slug": "legion-hand",
       "status": "testing",
       "platform": "Android",
       "package": "com.lee4family.jproject04",
-      "name": { "en": "Legion Hand", "ko": "레기온 핸드" },
+      "name": {
+        "en": "Legion Hand",
+        "ko": "레기온 핸드"
+      },
       "pitch": {
         "en": "Attack with poker hands and multiply your damage with creature combos.",
         "ko": "포커 족보로 공격하고 크리처 조합으로 피해를 몇 배씩 불리는 카드 로그라이크."
       },
       "art": {
         "icon": "JProject04-Card/Art/Store/out/icon_512.png",
-        "feature": { "en": "JProject04-Card/Art/Store/out_en/feature_1024x500.png", "ko": "JProject04-Card/Art/Store/out/feature_1024x500.png" }
+        "feature": {
+          "en": "JProject04-Card/Art/Store/out_en/feature_1024x500.png",
+          "ko": "JProject04-Card/Art/Store/out/feature_1024x500.png"
+        }
       },
-      "links": { "privacy": "legion-hand/", "guide": { "ko": "legion-hand/guide/", "en": "legion-hand/guide/en/" } }
+      "links": {
+        "privacy": "legion-hand/",
+        "guide": {
+          "ko": "legion-hand/guide/",
+          "en": "legion-hand/guide/en/"
+        }
+      },
+      "store": {
+        "kind": "play"
+      }
     },
     {
       "slug": "lumen-path",
       "status": "testing",
       "platform": "Android",
       "package": "com.lee4family.jproject05",
-      "name": { "en": "Lumen Path", "ko": "루멘 패스" },
+      "name": {
+        "en": "Lumen Path",
+        "ko": "루멘 패스"
+      },
       "pitch": {
         "en": "Slide tiles to guide the light from the sun to every lamp.",
         "ko": "타일을 밀어 해에서 전구까지 빛의 길을 잇는 슬라이드 퍼즐."
       },
       "art": {
         "icon": "JProject05-RollTheBall/Art/Store/out/en/icon_512.png",
-        "feature": { "en": "JProject05-RollTheBall/Art/Store/out/en/feature_1024x500.png", "ko": "JProject05-RollTheBall/Art/Store/out/ko/feature_1024x500.png" }
+        "feature": {
+          "en": "JProject05-RollTheBall/Art/Store/out/en/feature_1024x500.png",
+          "ko": "JProject05-RollTheBall/Art/Store/out/ko/feature_1024x500.png"
+        }
       },
-      "links": { "privacy": "lumen-path/" }
+      "links": {
+        "privacy": "lumen-path/"
+      },
+      "store": {
+        "kind": "play"
+      }
     },
     {
       "slug": "mukbang-cat",
       "status": "testing",
       "platform": "Android",
       "package": "com.lee4family.jproject08",
-      "name": { "en": "Mukbang Cat", "ko": "먹방 냐모" },
+      "name": {
+        "en": "Mukbang Cat",
+        "ko": "먹방 냐모"
+      },
       "pitch": {
         "en": "Sort the dishes, stack four of a kind, and feed the streaming cat!",
         "ko": "같은 음식 4접시를 모아 먹방 방송 중인 냐모에게 서빙하는 정렬 퍼즐!"
       },
       "art": {
         "icon": "JProject08-MukbangCat/Art/Store/out/en/icon_512.png",
-        "feature": { "en": "JProject08-MukbangCat/Art/Store/out/en/feature_1024x500.png", "ko": "JProject08-MukbangCat/Art/Store/out/ko/feature_1024x500.png" }
+        "feature": {
+          "en": "JProject08-MukbangCat/Art/Store/out/en/feature_1024x500.png",
+          "ko": "JProject08-MukbangCat/Art/Store/out/ko/feature_1024x500.png"
+        }
       },
-      "links": { "privacy": "mukbang-cat/" }
+      "links": {
+        "privacy": "mukbang-cat/"
+      },
+      "store": {
+        "kind": "play"
+      }
     },
     {
       "slug": "hwani-block",
       "status": "testing",
       "platform": "Android",
       "package": "com.lee4family.jproject10",
-      "name": { "en": "Hwani Block", "ko": "화니 블록" },
+      "name": {
+        "en": "Hwani Block",
+        "ko": "화니 블록"
+      },
       "pitch": {
         "en": "Fit blocks, clear lines, and grant puppy Hwani's toy wishes. Woof!",
         "ko": "블록을 채워 줄을 지우고, 강아지 화니의 장난감 소원을 들어주세요. 멍!"
       },
       "art": {
         "icon": "JProject10-BlockPlace/Art/Store/out/en/icon_512.png",
-        "feature": { "en": "JProject10-BlockPlace/Art/Store/out/en/feature_1024x500.png", "ko": "JProject10-BlockPlace/Art/Store/out/ko/feature_1024x500.png" }
+        "feature": {
+          "en": "JProject10-BlockPlace/Art/Store/out/en/feature_1024x500.png",
+          "ko": "JProject10-BlockPlace/Art/Store/out/ko/feature_1024x500.png"
+        }
       },
-      "links": { "privacy": "hwani-block/" }
+      "links": {
+        "privacy": "hwani-block/"
+      },
+      "store": {
+        "kind": "play"
+      }
     },
     {
       "slug": "hwani-treasure-hunt",
       "status": "testing",
       "platform": "Android",
       "package": "com.lee4family.jproject11",
-      "name": { "en": "Hwani's Treasure Hunt", "ko": "화니의 보물찾기" },
+      "name": {
+        "en": "Hwani's Treasure Hunt",
+        "ko": "화니의 보물찾기"
+      },
       "pitch": {
         "en": "Find Hwani's hidden toys with pure logic. No guessing — every puzzle has a path.",
         "ko": "화니가 숨긴 장난감을 논리로만 찾아요. 찍기 없이 추리로 푸는 퍼즐!"
       },
       "art": {
         "icon": "JProject11-StarBattle/Art/Store/out/en/icon_512.png",
-        "feature": { "en": "JProject11-StarBattle/Art/Store/out/en/feature_1024x500.png", "ko": "JProject11-StarBattle/Art/Store/out/ko/feature_1024x500.png" }
+        "feature": {
+          "en": "JProject11-StarBattle/Art/Store/out/en/feature_1024x500.png",
+          "ko": "JProject11-StarBattle/Art/Store/out/ko/feature_1024x500.png"
+        }
       },
-      "links": { "privacy": "hwani-treasure-hunt/" }
+      "links": {
+        "privacy": "hwani-treasure-hunt/"
+      },
+      "store": {
+        "kind": "play"
+      }
     },
     {
       "slug": "cube-figurines",
       "status": "dev",
       "platform": "Android",
       "package": "com.lee4family.jproject06",
-      "name": { "en": "Cube Figurines", "ko": "큐브 피규어" },
+      "name": {
+        "en": "Cube Figurines",
+        "ko": "큐브 피규어"
+      },
       "pitch": {
         "en": "Paint cute cube figurines by number and collect them on your display shelf.",
         "ko": "번호대로 칠해 귀여운 큐브 피규어를 완성하고 진열장에 하나씩 모아 보세요."
       },
       "art": {
         "icon": "JProject06-Coloring/Art/Store/out/en/icon_512.png",
-        "feature": { "en": "JProject06-Coloring/Art/Store/out/en/feature_1024x500.png", "ko": "JProject06-Coloring/Art/Store/out/ko/feature_1024x500.png" }
+        "feature": {
+          "en": "JProject06-Coloring/Art/Store/out/en/feature_1024x500.png",
+          "ko": "JProject06-Coloring/Art/Store/out/ko/feature_1024x500.png"
+        }
       },
-      "links": { "privacy": "voxel-diorama/" }
+      "links": {
+        "privacy": "voxel-diorama/"
+      },
+      "store": {
+        "kind": "play"
+      }
+    },
+    {
+      "slug": "idle-rpg",
+      "status": "dev",
+      "platform": "PC",
+      "store": {
+        "kind": "steam"
+      },
+      "name": {
+        "en": "Idle RPG (working title)",
+        "ko": "방치형 RPG (가제)"
+      },
+      "pitch": {
+        "en": "Raise a party of hand-painted figurines on a tabletop diorama — an idle clicker RPG with deep, long-term growth.",
+        "ko": "탁자 위 디오라마에 피규어 파티를 올려 두고 키우는, 성장이 깊은 방치형 · 클리커 RPG."
+      },
+      "art": {},
+      "links": {}
     }
   ]
 }

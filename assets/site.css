@@ -57,6 +57,11 @@ h2 {
   box-shadow: 0 2px 0 rgba(58, 46, 39, .06);
 }
 .card .feature { width: 100%; height: auto; aspect-ratio: 1024 / 500; object-fit: cover; background: var(--line); }
+.card .feature.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: repeating-linear-gradient(135deg, var(--cream) 0 14px, var(--paper) 14px 28px);
+  color: var(--ink-soft); font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 22px;
+}
 .card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .card .head { display: flex; gap: 12px; align-items: center; }
 .card .icon { width: 56px; height: 56px; border-radius: 14px; flex: none; }

@@ -11,6 +11,7 @@ const ROOT = path.resolve(SITE, ".."); // 프로젝트 루트 — 게임 저장�
 const POLICY_BASE = "https://jeddli.github.io/lee4family-policies/";
 const SUPPORT = "leefourfamily.support@gmail.com";
 const DOMAIN = "https://lee4family.com/";
+const STORES = { play: "Google Play", stove: "STOVE", steam: "Steam" };
 
 const data = JSON.parse(fs.readFileSync(path.join(SITE, "data", "games.json"), "utf8"));
 const games = data.games;
@@ -27,7 +28,7 @@ async function buildArt() {
   for (const g of games) {
     const out = path.join(SITE, "assets", g.slug);
     fs.mkdirSync(out, { recursive: true });
-    const jobs = [["icon", g.art.icon, 256]];
+    const jobs = g.art.icon ? [["icon", g.art.icon, 256]] : [];
     for (const [lang, src] of Object.entries(g.art.feature || {})) jobs.push([`feature-${lang}`, src, 1024]);
     for (const [name, rel, width] of jobs) {
       const src = path.join(ROOT, rel);
@@ -49,28 +50,28 @@ async function buildArt() {
 // ---------- 글 ----------
 const T = {
   en: {
-    lang: "en", title: "Lee4Family — Small games from a family studio",
-    desc: "Cozy puzzle and card games for Android, made by the Lee4Family family studio.",
-    hero: "Small games,<br>made by a family.",
-    heroSub: "Lee4Family is a small family studio making cozy puzzle and card games you can play a few minutes at a time. Our Maltese, Hwani, stars in some of them.",
-    play: "Play now", testing: "In testing — come play early", dev: "In development",
+    lang: "en", title: "Lee4Family — Games, made by a family",
+    desc: "Lee4Family is a family-run game studio making games for mobile and PC.",
+    hero: "Games,<br>made by a family.",
+    heroSub: "Lee4Family is a family-run game studio making games for mobile and PC — from quick puzzles to action roguelites. Our Maltese, Hwani, stars in some of them.",
+    play: "Out now &amp; coming soon", testing: "In testing — come play early", dev: "In development",
     testingSub: "These games are in closed testing on Google Play. Send us the Google account you use on your Android phone and we'll add you as a tester.",
-    status: { live: "On Google Play", soon: "Coming soon", testing: "Closed test", dev: "In development" },
-    getIt: "Get it on Google Play", soonBtn: "Coming soon to Google Play",
+    status: { live: "Out now", soon: "Coming soon", testing: "Closed test", dev: "In development" },
+    getIt: (s) => (s === "play" ? "Get it on Google Play" : `View on ${STORES[s]}`), soonBtn: (s) => `Coming soon to ${STORES[s]}`,
     joinTest: "Become a tester", privacy: "Privacy policy", guide: "How to play",
     testerSubject: (n) => `[Tester] ${n}`,
     testerBody: (n) => `Hi Lee4Family,\n\nI'd like to test ${n}.\nGoogle account (Android): \n\n`,
     contact: "Contact", policies: "All privacy policies", other: "한국어",
   },
   ko: {
-    lang: "ko", title: "Lee4Family — 가족이 만드는 작은 게임",
-    desc: "가족 스튜디오 Lee4Family 가 만드는 안드로이드 퍼즐 · 카드 게임.",
-    hero: "가족이 함께 만드는<br>작은 게임들.",
-    heroSub: "Lee4Family 는 가족이 함께 꾸리는 작은 게임 스튜디오예요. 잠깐씩 즐기기 좋은 퍼즐과 카드 게임을 만들고, 우리 집 말티즈 화니도 게임에 나와요.",
-    play: "지금 해 보기", testing: "테스트 중 — 먼저 해 보세요", dev: "만드는 중",
+    lang: "ko", title: "Lee4Family — 가족이 함께 만드는 게임",
+    desc: "Lee4Family 는 가족이 함께 꾸리는 게임 스튜디오예요. 모바일과 PC 게임을 만듭니다.",
+    hero: "가족이 함께<br>만드는 게임.",
+    heroSub: "Lee4Family 는 가족이 함께 꾸리는 게임 스튜디오예요. 가볍게 즐기는 모바일 퍼즐부터 PC 액션 로그라이트까지 만들고, 우리 집 말티즈 화니도 게임에 나와요.",
+    play: "출시 · 곧 출시", testing: "테스트 중 — 먼저 해 보세요", dev: "만드는 중",
     testingSub: "아래 게임은 Google Play 비공개 테스트 중이에요. 안드로이드 폰에서 쓰는 Google 계정을 보내 주시면 테스터로 넣어 드려요.",
-    status: { live: "Google Play 출시", soon: "곧 출시", testing: "비공개 테스트", dev: "개발 중" },
-    getIt: "Google Play 에서 받기", soonBtn: "Google Play 곧 출시",
+    status: { live: "출시", soon: "곧 출시", testing: "비공개 테스트", dev: "개발 중" },
+    getIt: (s) => (s === "play" ? "Google Play 에서 받기" : `${STORES[s]} 에서 보기`), soonBtn: (s) => `${STORES[s]} 곧 출시`,
     joinTest: "테스터 신청", privacy: "개인정보처리방침", guide: "플레이 안내",
     testerSubject: (n) => `[테스터 신청] ${n}`,
     testerBody: (n) => `안녕하세요 Lee4Family,\n\n${n} 테스트에 참여하고 싶어요.\n안드로이드 폰의 Google 계정: \n\n`,
@@ -87,11 +88,12 @@ function card(g, t, pre) {
   const featLang = g.art.feature && g.art.feature[lang] ? lang : "en";
   const feat = `assets/${g.slug}/feature-${featLang}.webp`;
   const icon = `assets/${g.slug}/icon.webp`;
-  const play = `https://play.google.com/store/apps/details?id=${g.package}&hl=${lang}`;
+  const kind = (g.store && g.store.kind) || "play";
+  const storeUrl = (g.store && g.store.url) || (kind === "play" ? `https://play.google.com/store/apps/details?id=${g.package}&hl=${lang}` : "");
   let action = "";
-  if (g.status === "live") action = `<a class="btn primary" href="${play}" rel="noopener">${t.getIt}</a>`;
-  else if (g.status === "soon") action = `<span class="btn ghost" aria-disabled="true">${t.soonBtn}</span>`;
-  else if (g.status === "testing") {
+  if (g.status === "live" && storeUrl) action = `<a class="btn primary" href="${storeUrl}" rel="noopener">${t.getIt(kind)}</a>`;
+  else if (g.status === "soon") action = `<span class="btn ghost" aria-disabled="true">${t.soonBtn(kind)}</span>`;
+  else if (g.status === "testing" && kind === "play") {
     const href = `mailto:${SUPPORT}?subject=${encodeURIComponent(t.testerSubject(g.name.en))}&body=${encodeURIComponent(t.testerBody(name))}`;
     action = `<a class="btn primary" href="${href}">${t.joinTest}</a>`;
   }
@@ -100,7 +102,7 @@ function card(g, t, pre) {
   if (g.links.privacy) links.push(`<a href="${POLICY_BASE}${g.links.privacy}">${t.privacy}</a>`);
   return `
       <article class="card" id="${g.slug}">
-        ${exists(feat) ? `<img class="feature" src="${pre}${feat}" alt="" width="1024" height="500" loading="lazy">` : ""}
+        ${exists(feat) ? `<img class="feature" src="${pre}${feat}" alt="" width="1024" height="500" loading="lazy">` : `<div class="feature placeholder"><span>${esc(g.platform)} · ${STORES[kind]}</span></div>`}
         <div class="body">
           <div class="head">
             ${exists(icon) ? `<img class="icon" src="${pre}${icon}" alt="" width="64" height="64" loading="lazy">` : ""}
