@@ -269,10 +269,16 @@ h2 { font-family: var(--display); font-weight: 600; font-size: 26px; margin: 0 0
   .games-grid { grid-template-columns: 1fr; }
   .tabs { width: 100%; overflow-x: auto; scrollbar-width: none; }
   .tabs button { flex: 1; white-space: nowrap; padding: 7px 10px; }
-  .char { grid-template-columns: 120px 1fr; padding: 16px 18px 16px 6px; border-radius: 22px; }
-  .char::before { width: 150px; height: 150px; }
-  .char-art img { width: 120px; height: 120px; }
-  .char h3 { font-size: 24px; }
+  /* 폰: 그림 + 이름을 한 줄, 소개는 아래 전체 폭 */
+  .char { grid-template-columns: 112px 1fr; gap: 0 14px; padding: 16px 20px 20px 10px; border-radius: 22px; align-items: center; }
+  .char::before { width: 140px; height: 140px; left: -16px; top: 70px; }
+  .char-body { display: contents; }
+  .char-art { grid-row: 1 / span 2; }
+  .char-art img { width: 112px; height: 112px; }
+  .char .role { grid-column: 2; align-self: end; }
+  .char h3 { grid-column: 2; align-self: start; font-size: 26px; margin: 0; }
+  .char p { grid-column: 1 / -1; padding-left: 10px; position: relative; }
+  .char p:not(.appears) { margin-top: 10px; }
   .stats b { font-size: 34px; }
   .news li { grid-template-columns: 1fr; padding: 18px 0; }
   .band { padding-bottom: 60px; }
