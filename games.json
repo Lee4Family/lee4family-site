@@ -18,6 +18,23 @@
       "store": {
         "play": "https://play.google.com/store/apps/details?id=com.lee4family.Lee42048"
       }
+    },
+    {
+      "id": "legion-hand",
+      "status": "live",
+      "package": "com.lee4family.jproject04",
+      "name": {
+        "en": "Legion Hand",
+        "ko": "레기온 핸드"
+      },
+      "pitch": {
+        "en": "Attack with poker hands and multiply your damage with creature combos.",
+        "ko": "포커 족보로 공격하고 크리처 조합으로 피해를 몇 배씩 불리는 카드 로그라이크."
+      },
+      "icon": "https://lee4family.com/assets/legion-hand/icon.png",
+      "store": {
+        "play": "https://play.google.com/store/apps/details?id=com.lee4family.jproject04"
+      }
     }
   ]
 }

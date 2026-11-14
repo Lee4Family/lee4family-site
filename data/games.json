@@ -52,7 +52,7 @@
     },
     {
       "slug": "legion-hand",
-      "status": "testing",
+      "status": "live",
       "platform": "Android",
       "package": "com.lee4family.jproject04",
       "name": {
