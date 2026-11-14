@@ -557,8 +557,11 @@ function buildFeed() {
     if (!Object.keys(store).length) continue;
     const iconPng = `assets/${g.slug}/icon.png`;
     if (!exists(iconPng)) console.warn(`games.json: ${g.slug} 의 ${iconPng} 없음 — node tools/build.js --art 로 만든다`);
+    // 등급(가장 엄한 스토어 등급의 최소 나이) — 없으면 앱이 이 게임을 숨긴다(홍보 게임 등급이 앱 등급에 맞아야, Play 광고 정책)
+    if (typeof g.rating !== "number") console.warn(`games.json: ${g.slug} 에 rating 없음 — 앱에서 안 보인다. Play 페이지 등급의 최소 나이를 data/games.json 에 적는다`);
     list.push({
       id: g.slug,
+      rating: typeof g.rating === "number" ? g.rating : null,
       status: g.status,
       package: g.package || "",
       name: { en: g.name.en, ko: g.name.ko || g.name.en },

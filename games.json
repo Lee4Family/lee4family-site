@@ -4,6 +4,7 @@
   "games": [
     {
       "id": "2048",
+      "rating": 3,
       "status": "live",
       "package": "com.lee4family.Lee42048",
       "name": {
@@ -21,6 +22,7 @@
     },
     {
       "id": "legion-hand",
+      "rating": 10,
       "status": "live",
       "package": "com.lee4family.jproject04",
       "name": {

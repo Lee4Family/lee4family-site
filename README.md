@@ -10,7 +10,7 @@ Lee4Family 게임 소개 사이트 — https://lee4family.com (GitHub Pages, 공
   - `test/` = 테스트 중 게임 모음(`status: testing`) + 출시작 별점 부탁. 한 게임 강조 = `test/#<slug>`.
   - `test/<slug>/` = 게임 하나만의 테스트 요청 페이지 — 새 게임 첫 비공개 테스트 때 카톡으로 보낸다(HQ 스킬 `tester-page`). 카톡 미리보기 그림 = 그 게임 피처 그래픽. 그 게임이 `live` 가 되면 같은 주소가 "출시했어요 · 별점 부탁"으로 바뀐다(예전 링크가 살아 있게).
   - 선택 칸 `test`: `{ "since": "YYYY-MM-DD", "focus": { "ko": ["이번에 봐 줬으면 하는 것", …] } }` — 요청 페이지에 목록으로 나온다.
-- **`games.json`(루트, 빌드가 만든다) = 게임 안 "다른 게임" 칸이 받아 가는 공개 목록** — https://lee4family.com/games.json. `status: live` 이고 스토어 링크가 있는 게임만(id · package · 이름 · 한 줄 · `icon`(png 192, `assets/<slug>/icon.png` — 게임이 webp 를 못 읽는다) · `store.play` · `store.appstore`). 게임을 `live` 로 바꾸고 빌드하면 이미 깔린 게임들에도 뜬다. 모양을 바꾸면 `build.js` 의 `FEED_VERSION` 을 올린다(깔린 게임은 모르는 판이면 빌드에 넣은 목록을 쓴다). iOS 링크는 `data/games.json` 의 `store.appstore` 에 직접.
+- **`games.json`(루트, 빌드가 만든다) = 게임 안 "다른 게임" 칸이 받아 가는 공개 목록** — https://lee4family.com/games.json. `status: live` 이고 스토어 링크가 있는 게임만(id · `rating`(가장 엄한 스토어 등급의 최소 나이 — 앱은 자기 등급보다 높거나 없는 게임을 숨긴다, **live 로 바꿀 때 Play 페이지 등급을 보고 `data/games.json` 에 같이 적는다**) · package · 이름 · 한 줄 · `icon`(png 192, `assets/<slug>/icon.png` — 게임이 webp 를 못 읽는다) · `store.play` · `store.appstore`). 게임을 `live` 로 바꾸고 빌드하면 이미 깔린 게임들에도 뜬다. 모양을 바꾸면 `build.js` 의 `FEED_VERSION` 을 올린다(깔린 게임은 모르는 판이면 빌드에 넣은 목록을 쓴다). iOS 링크는 `data/games.json` 의 `store.appstore` 에 직접.
 - `app-ads.txt` = AdMob 앱 확인 파일(도메인 루트여야 한다). `CNAME` = 사용자 도메인.
 - 처리방침 · 플레이 안내는 여기 말고 `lee4family-policies` 저장소(`jeddli.github.io/lee4family-policies/`).
 - 관리 = JProject-HQ (`Stores/README.md` "웹사이트").
