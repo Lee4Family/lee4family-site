@@ -8,12 +8,12 @@
       "status": "live",
       "package": "com.lee4family.Lee42048",
       "name": {
-        "en": "Lee4 - 2048 Puzzle",
-        "ko": "Lee4 - 2048 퍼즐"
+        "en": "Hwani 2048",
+        "ko": "화니 2048"
       },
       "pitch": {
-        "en": "Slide the tiles, merge matching numbers and reach 2048. A clean, calm classic.",
-        "ko": "타일을 밀어 같은 숫자를 합치고 2048을 만드는 깔끔한 숫자 퍼즐."
+        "en": "Merge numbers and watch Hwani the puppy grow up — a cozy 2048 puzzle.",
+        "ko": "숫자를 합칠수록 강아지 화니가 자라요 — 포근한 2048 퍼즐"
       },
       "icon": "https://lee4family.com/assets/2048/icon.png",
       "store": {

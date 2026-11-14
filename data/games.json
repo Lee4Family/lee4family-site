@@ -1,24 +1,24 @@
 {
-  "_note": "Lee4Family 게임 목록 — 이 파일이 사이트의 정본. 고친 뒤 `node tools/build.js`. store.kind: play · stove · steam (live 면 store.url 링크). store.play · store.appstore = 앱 교차 홍보 목록(루트 games.json)에 실을 스토어 링크 — play 는 비우면 package 로 만든다, appstore 는 iOS 출시 때 적는다. 루트 games.json 에는 live 게임만 실린다. status: live(스토어 링크) · soon(심의 중) · testing(비공개 테스트 — 테스터 모집 메일) · dev(개발 중). art 경로는 프로젝트 루트(이 저장소의 부모 폴더) 기준 — build.js 가 assets/ 로 줄여 복사한다. rating = 가장 엄한 스토어 등급의 최소 나이(Play 페이지에서 확인 — 2048 Everyone=3, legion-hand Everyone 10+ · Fantasy Violence=10, 2026-11-14 US) — 앱은 자기 등급(MoreGamesMaxRating)보다 높거나 rating 이 없는 게임을 안 보인다(Play 광고 정책: 홍보 게임 등급이 앱 등급에 맞아야). live 로 바꿀 때 같이 적는다.",
+  "_note": "Lee4Family 게임 목록 — 이 파일이 사이트의 정본. 고친 뒤 `node tools/build.js`. store.kind: play · stove · steam (live 면 store.url 링크). store.play · store.appstore = 앱 교차 홍보 목록(루트 games.json)에 실을 스토어 링크 — play 는 비우면 package 로 만든다, appstore 는 iOS 출시 때 적는다. 루트 games.json 에는 live 게임만 실린다. status: live(스토어 링크) · soon(심의 중) · testing(비공개 테스트 — 테스터 모집 메일) · dev(개발 중). art 경로는 프로젝트 루트(이 저장소의 부모 폴더) 기준 — build.js 가 assets/ 로 줄여 복사한다. rating = 콘텐츠 등급의 최소 나이 — **보통 게임은 적지 않는다(= 전체이용가 3)**, 전체이용가보다 높은 게임만 적는다(예: legion-hand 10 = Play US \"Everyone 10+ · Fantasy Violence\", 2026-11-14 — 한국은 전체이용가). 앱은 자기 등급(키트 MoreGamesMaxRating, 기본 3)보다 높은 게임을 안 보인다(Play 광고 정책: 홍보 게임 등급이 앱 등급에 맞아야). 타깃 연령(13세 이상)과는 다른 값.",
   "games": [
     {
       "slug": "2048",
       "status": "live",
       "platform": "Android",
       "package": "com.lee4family.Lee42048",
-      "rating": 3,
       "name": {
-        "en": "Lee4 - 2048 Puzzle",
-        "ko": "Lee4 - 2048 퍼즐"
+        "en": "Hwani 2048",
+        "ko": "화니 2048"
       },
       "pitch": {
-        "en": "Slide the tiles, merge matching numbers and reach 2048. A clean, calm classic.",
-        "ko": "타일을 밀어 같은 숫자를 합치고 2048을 만드는 깔끔한 숫자 퍼즐."
+        "en": "Merge numbers and watch Hwani the puppy grow up — a cozy 2048 puzzle.",
+        "ko": "숫자를 합칠수록 강아지 화니가 자라요 — 포근한 2048 퍼즐"
       },
       "art": {
-        "icon": "JProject02/RawAsset/StoreImage/PlayStore_Upload/1_AppIcon_512x512.png",
+        "icon": "JProject02/Art/Store/out/en/icon_512.png",
         "feature": {
-          "en": "JProject02/RawAsset/StoreImage/PlayStore_Upload/2_FeatureGraphic_1024x500.png"
+          "en": "JProject02/Art/Store/out/en/feature_1024x500.png",
+          "ko": "JProject02/Art/Store/out/ko/feature_1024x500.png"
         }
       },
       "links": {
