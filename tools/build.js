@@ -43,6 +43,12 @@ async function buildArt() {
       await sharp(src).resize({ width, withoutEnlargement: true }).webp({ quality: 82 }).toFile(dst);
       console.log(`${g.slug}/${name}.webp  ${(fs.statSync(dst).size / 1024).toFixed(0)} KB`);
     }
+    // 앱 교차 홍보용 아이콘 — 게임(UE ImageWrapper)이 webp 를 못 읽어 png 로 따로
+    if (g.art.icon && fs.existsSync(path.join(ROOT, g.art.icon))) {
+      const dst = path.join(out, "icon.png");
+      await sharp(path.join(ROOT, g.art.icon)).resize({ width: 192, withoutEnlargement: true }).png({ compressionLevel: 9, palette: true }).toFile(dst);
+      console.log(`${g.slug}/icon.png  ${(fs.statSync(dst).size / 1024).toFixed(0)} KB`);
+    }
   }
   // 캐릭터 그림 (data/studio.json) — 흰 배경 그대로, 페이지가 곱하기 섞기로 얹는다
   const studioData = JSON.parse(fs.readFileSync(path.join(SITE, "data", "studio.json"), "utf8"));
@@ -527,8 +533,52 @@ function buildTestPages() {
   return made;
 }
 
+// ---------- 앱이 받아 가는 공개 목록 (games.json → https://lee4family.com/games.json) ----------
+// 게임 안 "다른 게임" 칸(JReleaseKit 교차 홍보 위젯)이 받아 간다 — 새 게임이 출시되면 이미 깔린 게임들도 업데이트 없이 보인다.
+// 넣는 것: status live + 공개 스토어 링크가 하나라도 있는 게임만(비공개 테스트 · 심의 중 링크는 넣지 않는다).
+// 스토어 링크: store.play(없으면 kind play + package 로 만든다) · store.appstore(iOS 앱 링크, 직접 적는다).
+// 모양을 바꾸면 version 을 올린다 — 이미 깔린 게임은 모르는 version 이면 빌드에 넣은 목록을 쓴다.
+const FEED_VERSION = 1;
+
+function feedLinks(g) {
+  const s = g.store || {};
+  const out = {};
+  const play = s.play || ((s.kind || "play") === "play" && g.package ? `https://play.google.com/store/apps/details?id=${g.package}` : "");
+  if (play) out.play = play;
+  if (s.appstore) out.appstore = s.appstore;
+  return out;
+}
+
+function buildFeed() {
+  const list = [];
+  for (const g of games) {
+    if (g.status !== "live") continue;
+    const store = feedLinks(g);
+    if (!Object.keys(store).length) continue;
+    const iconPng = `assets/${g.slug}/icon.png`;
+    if (!exists(iconPng)) console.warn(`games.json: ${g.slug} 의 ${iconPng} 없음 — node tools/build.js --art 로 만든다`);
+    list.push({
+      id: g.slug,
+      status: g.status,
+      package: g.package || "",
+      name: { en: g.name.en, ko: g.name.ko || g.name.en },
+      pitch: { en: g.pitch.en, ko: g.pitch.ko || g.pitch.en },
+      icon: exists(iconPng) ? `${DOMAIN}${iconPng}` : "",
+      store,
+    });
+  }
+  const feed = { version: FEED_VERSION, studio: "Lee4Family", games: list };
+  const file = path.join(SITE, "games.json");
+  const text = JSON.stringify(feed, null, 2) + "\n";
+  // 내용이 같으면 쓰지 않는다(빌드만 돌려도 diff 가 생기지 않게)
+  if (!fs.existsSync(file) || fs.readFileSync(file, "utf8") !== text) fs.writeFileSync(file, text);
+  return list.map((g) => g.id);
+}
+
 (async () => {
   if (process.argv.includes("--art")) await buildArt();
+  const feed = buildFeed();
+  console.log(`games.json(앱 교차 홍보) — ${feed.length ? feed.join(" · ") : "없음"}`);
   fs.writeFileSync(path.join(SITE, "index.html"), page(T.en, "", DOMAIN, "ko/"));
   fs.mkdirSync(path.join(SITE, "ko"), { recursive: true });
   fs.writeFileSync(path.join(SITE, "ko", "index.html"), page(T.ko, "../", `${DOMAIN}ko/`, "../"));

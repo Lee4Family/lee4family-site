@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "studio": "Lee4Family",
+  "games": [
+    {
+      "id": "2048",
+      "status": "live",
+      "package": "com.lee4family.Lee42048",
+      "name": {
+        "en": "Lee4 - 2048 Puzzle",
+        "ko": "Lee4 - 2048 퍼즐"
+      },
+      "pitch": {
+        "en": "Slide the tiles, merge matching numbers and reach 2048. A clean, calm classic.",
+        "ko": "타일을 밀어 같은 숫자를 합치고 2048을 만드는 깔끔한 숫자 퍼즐."
+      },
+      "icon": "https://lee4family.com/assets/2048/icon.png",
+      "store": {
+        "play": "https://play.google.com/store/apps/details?id=com.lee4family.Lee42048"
+      }
+    }
+  ]
+}
