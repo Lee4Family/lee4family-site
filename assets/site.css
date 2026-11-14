@@ -340,6 +340,12 @@ h2 { font-family: var(--display); font-weight: 600; font-size: 26px; margin: 0 0
 .tl .cta { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
 .tl .focus { margin: 8px 0 0; padding-left: 22px; }
 .tl .focus li { margin: 4px 0; }
+.tl .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 4px 0 20px; }
+.tl .shots img { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; background: var(--line); }
+.tl .notice {
+  margin: 20px 0 0; padding: 14px 16px; font-size: 15px; line-height: 1.6;
+  background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--orange); border-radius: var(--radius);
+}
 .tl .faq { margin-top: 32px; font-size: 14px; color: var(--ink-soft); }
 .tl .faq p { margin: 0 0 10px; }
 .tl .faq b { color: var(--ink); }

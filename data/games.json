@@ -70,6 +70,18 @@
         "feature": {
           "en": "JProject04-Card/Art/Store/out_en/feature_1024x500.png",
           "ko": "JProject04-Card/Art/Store/out/feature_1024x500.png"
+        },
+        "shots": [
+          "JProject04-Card/Art/Store/out/phone_01.png",
+          "JProject04-Card/Art/Store/out/phone_03.png",
+          "JProject04-Card/Art/Store/out/phone_05.png",
+          "JProject04-Card/Art/Store/out/phone_07.png"
+        ]
+      },
+      "launch": {
+        "since": "2026-11-14",
+        "note": {
+          "ko": "테스트 의견을 듣고 글씨는 줄이고 그림 위주로 화면을 새로 짰어요. 심심할 때 한 판 해 주시면 정말 고맙겠어요!"
         }
       },
       "links": {

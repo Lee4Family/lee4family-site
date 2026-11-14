@@ -36,6 +36,7 @@ async function buildArt() {
     fs.mkdirSync(out, { recursive: true });
     const jobs = g.art.icon ? [["icon", g.art.icon, 256]] : [];
     for (const [lang, src] of Object.entries(g.art.feature || {})) jobs.push([`feature-${lang}`, src, 1024]);
+    (g.art.shots || []).forEach((src, i) => jobs.push([`shot-${i + 1}`, src, 540]));
     for (const [name, rel, width] of jobs) {
       const src = path.join(ROOT, rel);
       if (!fs.existsSync(src)) { console.warn(`없음: ${rel}`); continue; }
@@ -477,11 +478,25 @@ function testPage(testing, live) {
     ${live.length ? `<h2>출시했어요</h2>
     <p class="sub">테스트해 주신 덕분이에요. 별점 · 리뷰 하나가 큰 힘이 돼요.</p>
     <ul class="games">${live.map((g) => row(g, liveButton(g))).join("")}
-    </ul>` : ""}${tlFoot(pre, "")}`;
+    </ul>
+    <p class="notice"><b>출시한 게임은 테스트 앱을 지우셔도 돼요.</b> 계속 하실 분은 그대로 두면 정식판으로 업데이트돼요. 위 "테스트 중" 게임은 아직 14일 동안 지우지 말아 주세요.</p>` : ""}${tlFoot(pre, "")}`;
+}
+
+// 출시한 게임 페이지에 붙는 것 — games.json 선택 칸 `launch`: { "since", "note": { "ko" } } · `art.shots`(스크린샷 → assets/<slug>/shot-N.webp)
+function launchBlock(g, pre, testing) {
+  const note = g.launch && g.launch.note && (g.launch.note.ko || g.launch.note.en);
+  const shots = (g.art.shots || []).map((_, i) => `assets/${g.slug}/shot-${i + 1}.webp`).filter(exists);
+  const others = testing.filter((t) => t.slug !== g.slug);
+  return `${note ? `
+    <h2>이렇게 바뀌었어요</h2>
+    <p class="lead">${esc(note)}</p>` : ""}${shots.length ? `
+    <div class="shots">${shots.map((s) => `<img src="${pre}${s}" alt="" width="540" height="960" loading="lazy">`).join("")}</div>` : ""}
+    ${liveButton(g)}
+    <p class="notice"><b>테스트 앱은 이제 지우셔도 돼요.</b> ${esc(koName(g))} 테스트는 끝났어요 — 계속 하실 분은 그대로 두면 정식판으로 업데이트돼요.${others.length ? `<br><b>아직 테스트 중인 게임은 지우지 말아 주세요:</b> ${others.map((t) => `<a href="${pre}test/#${t.slug}">${esc(koName(t))}</a>`).join(" · ")} — 14일 동안 깔려 있어야 출시할 수 있어요.` : ""}</p>`;
 }
 
 // 게임 하나 — games.json 의 선택 칸 `test`: { "since": "YYYY-MM-DD", "focus": { "ko": ["봐 줬으면 하는 것", …] } }
-function gameTestPage(g) {
+function gameTestPage(g, testing = []) {
   const pre = "../../";
   const feat = featureFile(g);
   const isLive = g.status === "live";
@@ -490,8 +505,7 @@ function gameTestPage(g) {
   const name = koName(g);
   const body = isLive
     ? `
-    <p class="lead"><b>출시했어요!</b> 테스트해 주신 덕분이에요. 이제 누구나 받을 수 있어요 — 별점 · 리뷰 하나가 큰 힘이 돼요.</p>
-    ${liveButton(g)}`
+    <p class="lead"><b>출시했어요!</b> 테스트해 주셔서 정말 고마워요. 덕분에 이제 누구나 받을 수 있어요 — 별점 · 리뷰 하나가 큰 힘이 돼요.</p>${launchBlock(g, pre, testing)}`
     : `
     <p class="lead">새 게임을 만들었어요. 출시 전에 먼저 해 보고 의견을 들려주세요!</p>${STEPS}
     <div class="cta">${testButtons(g)}</div>
@@ -527,7 +541,7 @@ function buildTestPages() {
   const made = [];
   for (const g of [...testing, ...live]) {
     fs.mkdirSync(path.join(SITE, "test", g.slug), { recursive: true });
-    fs.writeFileSync(path.join(SITE, "test", g.slug, "index.html"), gameTestPage(g));
+    fs.writeFileSync(path.join(SITE, "test", g.slug, "index.html"), gameTestPage(g, testing));
     made.push(g.slug);
   }
   return made;
