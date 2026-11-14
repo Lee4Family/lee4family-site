@@ -11,7 +11,7 @@
         "ko": "Lee4Family 의 진짜 가족, 말티즈 화니예요. 아랫니가 살짝 나와 늘 혀끝을 쏙 내밀고 있고, 좀처럼 짖지 않는 순둥이예요. 태어날 때부터 뇌수두증이 있어 매일 약을 챙겨 먹지만, 올해로 {age}살 — 우리 곁에서 씩씩하게 잘 자라 주었어요. 앞으로도 오래오래, 건강하게 함께해요."
       },
       "art": "JProject-HQ/Characters/hwani/art/pose/bounce.jpg",
-      "games": ["hwani-block", "hwani-treasure-hunt"]
+      "games": ["hwani-block", "hwani-treasure-hunt", "hwani-sudoku"]
     },
     {
       "id": "nyamo",
@@ -26,6 +26,12 @@
     }
   ],
   "news": [
+    {
+      "date": "2026-11-14",
+      "game": "hwani-sudoku",
+      "title": { "en": "Hwani's Sudoku enters closed testing", "ko": "화니의 스도쿠 비공개 테스트 시작" },
+      "text": { "en": "Classic sudoku with Hwani — every puzzle solves by logic, no guessing.", "ko": "화니와 함께하는 클래식 스도쿠예요. 모든 판이 찍기 없이 추리로 풀려요." }
+    },
     {
       "date": "2026-11-08",
       "game": "2048",

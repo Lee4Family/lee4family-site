@@ -226,6 +226,44 @@
       }
     },
     {
+      "slug": "hwani-sudoku",
+      "status": "testing",
+      "platform": "Android",
+      "package": "com.lee4family.jproject14",
+      "name": {
+        "en": "Hwani's Sudoku",
+        "ko": "화니의 스도쿠"
+      },
+      "pitch": {
+        "en": "Classic sudoku with Hwani the puppy. No guessing — every puzzle solves by logic.",
+        "ko": "강아지 화니와 함께하는 클래식 스도쿠. 찍기 없이 추리로만 풀려요!"
+      },
+      "art": {
+        "icon": "JProject14-Sudoku/Art/Store/out/en/icon_512.png",
+        "feature": {
+          "en": "JProject14-Sudoku/Art/Store/out/en/feature_1024x500.png",
+          "ko": "JProject14-Sudoku/Art/Store/out/ko/feature_1024x500.png"
+        }
+      },
+      "links": {
+        "privacy": "hwani-sudoku/"
+      },
+      "store": {
+        "kind": "play"
+      },
+      "test": {
+        "since": "2026-11-14",
+        "focus": {
+          "ko": [
+            "처음 4×4 연습판만 하고 나서 9×9 판을 바로 풀 수 있는지",
+            "힌트(어디를 볼지 → 왜 그런지 → 숫자) 설명이 이해되는지",
+            "쉬움 · 보통 · 어려움 · 전문가 난이도가 이름에 맞는지",
+            "광고가 너무 자주 나오지 않는지"
+          ]
+        }
+      }
+    },
+    {
       "slug": "cube-figurines",
       "status": "dev",
       "platform": "Android",
